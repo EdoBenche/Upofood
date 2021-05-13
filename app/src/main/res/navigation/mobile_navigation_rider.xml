@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_list_trips">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="it.benche.upofood.ui.products.ProductsFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_categories"
+        android:name="it.benche.upofood.ui.categories.CategoriesFragment"
+        android:label="@string/menu_categories"
+        tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/nav_orders"
+        android:name="it.benche.upofood.ui.orders.OrdersFragment"
+        android:label="@string/menu_orders"
+        tools:layout="@layout/fragment_orders" />
+
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="it.benche.upofood.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_chat"
+        tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_list_trips"
+        android:name="it.benche.upofood.ui.activeTrips.ActiveTripsFragment"
+        android:label="@string/activeTrips"
+        tools:layout="@layout/fragment_list_trips" />
+</navigation>

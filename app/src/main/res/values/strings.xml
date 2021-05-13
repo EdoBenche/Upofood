@@ -1,0 +1,140 @@
+<resources>
+    <string name="app_name">Upofood</string>
+
+    <string name="hint_username">Username</string>
+    <string name="hint_name">Nome</string>
+    <string name="hint_surname">Cognome</string>
+    <string name="hint_password">Password</string>
+    <string name="button_sign_in">Accedi</string>
+    <string name="button_sign_up">Registrati</string>
+    <string name="button_send">Invia</string>
+    <string name="text_forgot_password">Password dimenticata?</string>
+    <string name="text_signin_message">Ciao, accedi al tuo account</string>
+    <string name="text_signin_social_media">Oppure accedi usando un social network</string>
+    <string name="text_signup_social_media">Oppure registrati usando un social network</string>
+    <string name="text_signin_signup">Non hai ancora un account? <b>Registrati</b></string>
+    <string name="text_signup_terms">Registrandoti, acconsentirai ai nostri <b>termini e condizioni d\'uso</b></string>
+    <string name="text_signup_message">Ciao, completa il tuo account</string>
+
+    <string name="added">Utente registrato con successo!</string>
+    <string name="redirect">Tra poco verrai reindirizzato alla home</string>
+
+    <string name="text_forgot_password_title">Password dimenticata? Nessun problema</string>
+    <string name="text_forgot_password_message">Ti invieremo un link per resettare la password</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_phone">Telefono</string>
+    <string name="hint_confirm_password">Conferma Password</string>
+
+    <string name="next">Avanti</string>
+    <string name="skip">Salta</string>
+    <string name="logout">Logout</string>
+
+    <string name="facebook_app_id">151026239999095</string>
+    <string name="fb_login_protocol_scheme">fb151026239999095</string>
+
+    <string name="client">Cliente</string>
+    <string name="rider">Rider</string>
+
+    <string name="choose">Scegli tipo utente</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Profilo</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_categories">Categorie</string>
+    <string name="menu_chat">Chat</string>
+    <string name="list_trips">Lista viaggi</string>
+
+    <string name="lbl_current_location">Posizione corrente</string>
+    <string name="hint_address">Indirizzo</string>
+    <string name="hint_provincia">Provincia</string>
+    <string name="hint_address_type">Address Type</string>
+    <string name="hint_city">Città</string>
+    <string name="hint_pin_code">Cap</string>
+
+    <string name="error_no_internet">Oops!! You Are Not Connected To Internet</string>
+    <string name="error_field_required">Field Required</string>
+    <string name="error_pwd_digit_required">Maximum 6 digit Required</string>
+    <string name="error_enter_valid_email">Enter Valid Email</string>
+    <string name="error_password_not_matches">Password not matches</string>
+    <string name="error_gps_not_enabled">GPS location is not enabled.</string>
+    <string name="error_something_went_wrong">Something went wrong</string>
+    <string name="error_permission_required">Location Permission Required</string>
+    <string name="error_address_type">Please Select Address Type</string>
+
+    <string name="add_product">Aggiungi prodotto</string>
+    <string name="hint_product">Nome prodotto</string>
+    <string name="hint_description">Descrizione</string>
+    <string name="hint_price">Prezzo</string>
+    <string name="hint_qty">Quantità</string>
+    <string name="hint_categories">Categoria</string>
+    <string name="submit">Invia</string>
+    <string name="add_image">Aggiungi immagine</string>
+    <string name="lbl_select_category">Seleziona la categoria</string>
+    <string name="text_todo">Chiudi</string>
+
+    <string name="bimbi">Articoli per il bambino</string>
+    <string name="carne">Carne</string>
+    <string name="bevande">Bevande</string>
+    <string name="casa">Tutto per la casa</string>
+    <string name="dolci">Dolci</string>
+    <string name="frutta_e_verdura">Frutta e verdura</string>
+    <string name="gastronomia_pasta_fresca">Gastronomia e pasta fresca</string>
+    <string name="gelati_surgelati">Gelati e surgelati</string>
+    <string name="igiene_personale">Igiene personale</string>
+    <string name="latticini">Latte, burro, uova e yogurt</string>
+    <string name="pane_e_pasticceria">Pane e pasticceria</string>
+    <string name="pesce">Pesce</string>
+    <string name="prodotti_alimentari">Prodotti alimentari</string>
+    <string name="prodotti_animali">Prodotti animali</string>
+    <string name="ricorrenze">Prodotti per festività</string>
+    <string name="salumi_e_formaggi">Salumi e formaggi</string>
+    <string name="tempo_libero">Tempo libero</string>
+
+    <string name="lbl_select_media">Scegli immagine da...</string>
+    <string name="fromCamera">Scatta foto</string>
+    <string name="fromGallery">Scegli dalla galleria</string>
+
+
+    <string name="lbl_add_to_cart">Aggiungi al carrello</string>
+    <string name="lbl_buy_now">Concludi l\'acquisto</string>
+    <string name="lbl_modify_product">Modifica il prodotto</string>
+    <string name="magazzino">Prodotti rimasti: </string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+
+    <string name="modifyProfile">Modifica il profilo</string>
+    <string name="addGestore">Aggiungi gestore</string>
+    <string name="storicoOrdini">Storico ordini</string>
+    <string name="myRiders">I miei riders</string>
+    <string name="manageAddress">Modifica l\'indirizzo</string>
+    <string name="storicoOrdiniCliente">I miei ordini</string>
+    <string name="storicoViaggi">I miei viaggi</string>
+    <string name="myTransport">Il mio mezzo di trasporto</string>
+    <string name="manageShop">Modifica informazioni negozio</string>
+    <string name="signout">Sign out</string>
+
+    <string name="lbl_submit_order">Effettua ordine</string>
+    <string name="carrello">Carrello</string>
+    <string name="ordini">Ordini attivi</string>
+    <string name="menu_orders">Ordini attivi</string>
+    <string name="newOrd">Nuovo</string>
+    <string name="myOrders">I miei ordini</string>
+    <string name="selectRider">Seleziona il rider</string>
+    <string name="btnAccept">Ordine preso in carico</string>
+    <string name="btnPrep">Ordine in preparazione</string>
+    <string name="btnDelivered">Consegnato al rider</string>
+    <string name="activeTrips">Viaggi attivi</string>
+    <string name="richieste">Richieste</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAxcQ58i8ewyUQKMHg8n8xdzM0B8DVvHy0</string>
+    <string name="chat_gestori">Chat gestori</string>
+    <string name="chat_gestore">Chat gestore</string>
+    <string name="aggiorna_profilo">Aggiorna profilo</string>
+    <string name="aggiorna_negozio">Aggiorna negozio</string>
+    <string name="nome_del_negozio">Nome del negozio</string>
+
+</resources>

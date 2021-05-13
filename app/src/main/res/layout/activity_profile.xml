@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".ProfileActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="@android:color/transparent"
+        app:navigationIcon="@drawable/ic_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="16dp">
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/profile_image"
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:innerRadius="0dp"
+                android:scaleType="centerCrop"
+                android:shape="ring"
+                android:src="@mipmap/ic_launcher_round"
+                tools:ignore="MissingClass" />
+
+            <ImageView
+                android:id="@+id/changePhoto"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="1dp"
+                app:srcCompat="@drawable/ic_baseline_add_a_photo_24"
+                tools:ignore="VectorDrawableCompat" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/txtDisplayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/hint_name"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_large" />
+
+        <TextView
+            android:id="@+id/modifyProfile"
+            style="@style/AccountLabel"
+            android:text="@string/modifyProfile" />
+
+        <!-- Bottoni gestore -->
+        <TextView
+            android:id="@+id/manageShop"
+            style="@style/AccountLabel"
+            android:text="@string/manageShop"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tvAddGestore"
+            style="@style/AccountLabel"
+            android:text="@string/addGestore"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/storicoOrdiniGestore"
+            style="@style/AccountLabel"
+            android:text="@string/storicoOrdini"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/myRiders"
+            style="@style/AccountLabel"
+            android:text="@string/myRiders"
+            android:visibility="gone"/>
+
+        <!-- Bottoni ciente -->
+        <TextView
+            android:id="@+id/tvManageAddress"
+            style="@style/AccountLabel"
+            android:text="@string/manageAddress"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tvMyOrders"
+            style="@style/AccountLabel"
+            android:text="@string/storicoOrdiniCliente"
+            android:visibility="gone"/>
+
+        <!-- Bottoni rider -->
+        <TextView
+            android:id="@+id/storicoViaggi"
+            style="@style/AccountLabel"
+            android:text="@string/storicoViaggi"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/myTransport"
+            style="@style/AccountLabel"
+            android:text="@string/myTransport"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/signOutButton"
+            style="@style/ButtonLogout"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/signout" />
+    </LinearLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

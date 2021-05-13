@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/design_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="80dp"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/md_grey_700"
+        app:cardCornerRadius="20dp"
+        android:layout_marginBottom="-20dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <View
+                android:layout_width="40dp"
+                android:layout_height="5dp"
+                android:background="@color/colorAccent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/infoRider"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:id="@+id/imgRider"
+                    android:layout_width="57dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_person" />
+
+                <TextView
+                    android:id="@+id/nameRider"
+                    style="@style/TextAppearance.AppCompat.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.9"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/toChat"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/ic_baseline_chat_24"
+                    app:tint="@color/md_orange_500" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ilTuoOrdine"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Il tuo ordine"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_above="@id/totOrdine"
+                        android:layout_below="@id/ilTuoOrdine" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Large"
+                android:id="@+id/totOrdine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:text="Totale ordine"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

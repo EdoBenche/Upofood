@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "781193134993",
+    "project_id": "upofoodv2",
+    "storage_bucket": "upofoodv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781193134993:android:2032887db4f1761d491030",
+        "android_client_info": {
+          "package_name": "it.benche.upofood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781193134993-dirhdivutp28cq2d3kvf0k6ikma0pvtg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI7DCRxH3VPpSEavKY3ub9Mtm7yIWsg4s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "781193134993-dirhdivutp28cq2d3kvf0k6ikma0pvtg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

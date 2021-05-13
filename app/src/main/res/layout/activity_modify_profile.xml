@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="@android:color/transparent"
+        app:navigationIcon="@drawable/ic_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_name"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp" >
+
+                    <EditText
+                        android:id="@+id/edtName"
+                        android:inputType="text"
+                        android:backgroundTint="@color/white"
+                        style="@style/TextInputEditTextStyle" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_surname"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp">
+
+                    <EditText
+                        android:id="@+id/edtSurname"
+                        style="@style/TextInputEditTextStyle"
+                        android:backgroundTint="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_phone"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp" >
+
+                    <EditText
+                        android:id="@+id/edtPhoneNumber"
+                        android:inputType="text"
+                        android:backgroundTint="@color/white"
+                        style="@style/TextInputEditTextStyle" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_email"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp">
+
+                    <EditText
+                        android:id="@+id/edtEmail"
+                        android:enabled="false"
+                        style="@style/TextInputEditTextStyle"
+                        android:backgroundTint="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/old"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_weight="1"
+                    android:hint="Vecchia password"
+                    android:enabled="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp">
+                    <EditText
+                        android:id="@+id/edtOldPassword"
+                        android:enabled="true"
+                        android:inputType="textPassword"
+                        style="@style/TextInputEditTextStyle"
+                        android:backgroundTint="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/newPwd"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_weight="1"
+                    android:hint="Nuova password"
+                    android:enabled="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp">
+                    <EditText
+                        android:id="@+id/edtNewPassword"
+                        android:enabled="true"
+                        android:inputType="textPassword"
+                        style="@style/TextInputEditTextStyle"
+                        android:backgroundTint="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/textInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="I campi della password possono rimanere vuoti, pertanto la password non verrà modificata"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSave"
+                style="@style/Button1"
+                android:layout_width="342dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="@string/aggiorna_profilo" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

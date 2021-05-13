@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AccountLabel">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontPath">fonts/Montserrat-SemiBold.ttf</item>
+        <item name="android:foreground">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:drawableEnd">@drawable/ic_keyboard_arrow_right_black</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/bg_ractangal_stroked</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+</resources>

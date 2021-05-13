@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/lbl_select_category"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_normal"
+            android:layout_toLeftOf="@id/ivClose" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:padding="4dp"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_close_black"
+            android:layout_marginRight="4dp"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/rgCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/bimbi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/bimbi"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/bevande"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/bevande"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/carne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/carne"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/dolci"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/dolci"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/frutta_e_verdura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/frutta_e_verdura"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/gastronomia_pasta_fresca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/gastronomia_pasta_fresca"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/gelati_surgelati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/gelati_surgelati"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/igiene_personale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/igiene_personale"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/latticini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/latticini"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pane_e_pasticceria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/pane_e_pasticceria"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pesce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/pesce"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/prodotti_alimentari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/prodotti_alimentari"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/prodotti_animali"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/prodotti_animali"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ricorrenze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/ricorrenze"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/salumi_e_formaggi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/salumi_e_formaggi"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/tempo_libero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/tempo_libero"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+        <RadioButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/casa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/radiobuttonTint"
+            android:text="@string/casa"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_medium" />
+    </RadioGroup>
+</LinearLayout>

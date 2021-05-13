@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rlUseCurrentLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_ractangal"
+                android:backgroundTint="@color/editText_background"
+                android:padding="10dp">
+
+                <TextView
+                    android:textAppearance="@style/FontSemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@drawable/ic_my_location"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/radiobuttonTint"
+                    android:gravity="center"
+                    android:text="@string/lbl_current_location"
+                    android:textColor="@color/radiobuttonTint"
+                    android:textSize="@dimen/font_size_medium"
+                    tools:ignore="MissingPrefix" />
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:hint="@string/hint_address"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <EditText
+                    android:id="@+id/edtAddress"
+                    style="@style/TextInputEditTextStyle"
+                    android:backgroundTint="@color/white"
+                    android:singleLine="false"
+                    android:gravity="top"
+                    android:lines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_pin_code"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp" >
+
+                    <EditText
+                        android:id="@+id/edtPinCode"
+                        android:inputType="number"
+                        android:maxEms="6"
+                        android:maxLength="6"
+                        android:backgroundTint="@color/white"
+                        style="@style/TextInputEditTextStyle" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_city"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp">
+
+                    <EditText
+                        android:id="@+id/edtCity"
+                        style="@style/TextInputEditTextStyle"
+                        android:backgroundTint="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_provincia"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp">
+
+                    <EditText
+                        android:id="@+id/edtProvincia"
+                        style="@style/TextInputEditTextStyle"
+                        android:backgroundTint="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSaveAddress"
+                style="@style/Button1"
+                android:layout_width="342dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="@string/button_sign_up" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

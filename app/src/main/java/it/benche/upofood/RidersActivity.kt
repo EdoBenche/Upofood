@@ -53,7 +53,7 @@ class RidersActivity: AppCompatActivity() {
                         addDataSet()
                     } else {
                         Log.w(
-                                "OrderActivity",
+                                "RidersActivity",
                                 "Error getting documents.",
                                 result.exception
                         )

@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -12,14 +13,13 @@ import android.provider.SyncStateContract
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RelativeLayout
-import android.widget.Spinner
-import android.widget.Toolbar
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.maps.android.SphericalUtil.computeDistanceBetween
+import com.google.type.LatLng
 import it.benche.upofood.models.Address
 import it.benche.upofood.utils.SimpleLocation
 import it.benche.upofood.utils.extensions.checkIsEmpty
@@ -27,10 +27,12 @@ import it.benche.upofood.utils.extensions.onClick
 import it.benche.upofood.utils.extensions.showError
 import it.benche.upofood.utils.Constants
 import it.benche.upofood.utils.extensions.isGPSEnable
+import kotlinx.android.synthetic.main.activity_active_order.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.activity_add_address.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.added_user_dialog.*
+import java.io.IOException
 import java.lang.RuntimeException
 
 class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
@@ -43,12 +45,17 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
     private var simpleLocation: SimpleLocation? = null
     private var addressId: Int? = -1
 
+    private lateinit var shopAddress: ArrayList<String>
+    private lateinit var checkInArray : Array<Boolean>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_address)
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance()
+        shopAddress = ArrayList()
+        checkInArray = Array(1) {false}
 
         simpleLocation = SimpleLocation(this)
         simpleLocation?.setListener(this)
@@ -78,6 +85,12 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
 
 
    private fun validate(): Boolean {
+       checkDistance()
+       if(!checkInArray[0]) {
+           edtAddress.showError("Distanza maggiore di 10km, si prega di inserire un indirizzo valido")
+           edtAddress.requestFocus()
+           return false
+       }
         when {
             edtPinCode.checkIsEmpty() -> {
                 edtPinCode.showError(getString(R.string.error_field_required))
@@ -152,7 +165,6 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
         val TAG: String = "AddAddressActivity";
         var uid: String? = mAuth.uid
         if (uid != null) {
-
             var user1 = db.collection("users").document(uid)
             user1.update("indirizzo", address)
         }
@@ -171,6 +183,59 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
             startActivity(Intent(this, DrawerActivityClient::class.java))
         }, 3000)
 
+    }
+
+    private fun checkDistance() {
+        var check = false
+        var latClient: Double = 0.0
+        var lonClient: Double = 0.0
+        lateinit var posShop: com.google.android.gms.maps.model.LatLng
+        lateinit var posClient: com.google.android.gms.maps.model.LatLng
+        db.collection("shop")
+            .document("info")
+            .get()
+            .addOnSuccessListener { document ->
+                shopAddress.add(document.getString("address.Via").toString())
+                shopAddress.add(document.getString("address.Citta").toString())
+                shopAddress.add(document.getString("address.CAP").toString())
+
+                var geocodeMatches: List<android.location.Address>? = null
+
+                try {
+                    geocodeMatches = Geocoder(this.applicationContext).getFromLocationName(
+                        "${shopAddress[0]}, ${shopAddress[1]}, ${shopAddress[2]}", 1
+                    )
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+
+                if (geocodeMatches != null) {
+                    var latitudeShop = geocodeMatches[0].latitude
+                    var longitudeShop = geocodeMatches[0].longitude
+                    posShop = com.google.android.gms.maps.model.LatLng(latitudeShop, longitudeShop)
+                }
+
+                var geocodeMatches1: List<android.location.Address>? = null
+
+                try {
+                    geocodeMatches1 = Geocoder(this.applicationContext).getFromLocationName(
+                        "${edtAddress.text}, ${edtCity.text}, ${edtPinCode.text}", 1
+                    )
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+
+                if (geocodeMatches1 != null) {
+                    latClient = geocodeMatches1[0].latitude
+                    lonClient = geocodeMatches1[0].longitude
+                    posClient = com.google.android.gms.maps.model.LatLng(latClient, lonClient)
+                }
+
+                Toast.makeText(applicationContext, computeDistanceBetween(posClient, posShop).toString(), Toast.LENGTH_LONG).show()
+                Log.d("wow", "Distanza: ${computeDistanceBetween(posClient, posShop)}")
+                check = computeDistanceBetween(posClient, posShop) <= 10000.0
+                checkInArray[0] = check
+            }
     }
 }
 

@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import it.benche.upofood.client.MyOldOrdersActivity
 import it.benche.upofood.manager.AddManagerActivity
 import it.benche.upofood.manager.MyShopActivity
 import it.benche.upofood.manager.RidersPositionActivity
@@ -104,6 +105,7 @@ class ProfileActivity: AppCompatActivity() {
         }
 
         tvMyOrders.onClick {
+            startActivity(Intent(context, MyOldOrdersActivity::class.java))
 
         }
 

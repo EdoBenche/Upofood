@@ -78,6 +78,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
     implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.160'
+    implementation 'com.google.maps.android:android-maps-utils:0.5+'
 
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

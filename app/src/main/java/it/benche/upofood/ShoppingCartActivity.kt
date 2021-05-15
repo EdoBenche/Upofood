@@ -78,6 +78,8 @@ class ShoppingCartActivity: AppCompatActivity() {
                             if(task == null) {
                                 empty.visibility = TextView.VISIBLE
                             }
+                            initRecyclerView()
+                            addDataSet()
 
                         } else {
                             Log.w(
@@ -87,18 +89,6 @@ class ShoppingCartActivity: AppCompatActivity() {
                             )
                         }
                     }
-
-
-
-            Handler().postDelayed({
-                initRecyclerView()
-                addDataSet()
-            }, 1000)
-
-
-            /*Handler().postDelayed({products = arrayList.toTypedArray()
-            val myList = findViewById<ListView>(R.id.myListView)
-            myList.adapter = ShoppingCartAdapter(this, R.layout.item_product_cart, products)}, 2000)*/
         }
 
 
@@ -185,7 +175,6 @@ class ShoppingCartActivity: AppCompatActivity() {
 
 
     private fun submitOrder() {
-        val numberOrder = UUID.randomUUID().toString()
         casual = Random().nextInt(999999).toString()
 
         for(product1 in arrayList) {
@@ -215,7 +204,7 @@ class ShoppingCartActivity: AppCompatActivity() {
                 .document(product1.prodotto)
                 .set(product)
                 .addOnSuccessListener {
-                    //updateWarehouse()
+                    updateWarehouse()
                     resetCart()
                     confirmed()
                 }
@@ -273,13 +262,14 @@ class ShoppingCartActivity: AppCompatActivity() {
                             {
                                 val qty: Int = document.getString("quantita")!!.toInt()
                                 qtNew = qty - product1.qty
+                                db.collection("products")
+                                    .document(product1.prodotto)
+                                    .update("quantita", qtNew.toString())
                             }
                         }
                 }
 
-            db.collection("products")
-                    .document(product1.prodotto)
-                    .update("quantita", qtNew.toString())
+
         }
     }
 

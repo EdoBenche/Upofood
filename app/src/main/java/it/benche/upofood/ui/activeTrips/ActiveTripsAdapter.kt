@@ -138,6 +138,28 @@ class ActiveTripsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         ))
                         .addOnSuccessListener {
                             Toast.makeText(context, "Non consegnato, swipe to refresh", Toast.LENGTH_LONG).toString()
+
+                            db.collection("orders")
+                                .document(tripCard.order)
+                                .collection("products")
+                                .get()
+                                .addOnCompleteListener { task ->
+                                    if(task.isSuccessful) {
+                                        for(document in task.result!!) {
+                                            val qty = document.getLong("qty")!!.toInt()
+                                            db.collection("products")
+                                                .document(document.id)
+                                                .get()
+                                                .addOnSuccessListener { r ->
+                                                    val totalQty: Int = r.getString("quantita")!!.toInt()
+                                                    val newQty = totalQty + qty
+                                                    db.collection("products")
+                                                        .document(document.id)
+                                                        .update("quantita", newQty.toString())
+                                                }
+                                        }
+                                    }
+                                }
                         }
             }
 

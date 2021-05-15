@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_position_riders.*
 import java.util.ArrayList
 import kotlin.properties.Delegates
 
+@Suppress("DEPRECATION")
 class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var database: FirebaseFirestore
@@ -51,7 +52,6 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                             lat.addValueEventListener(object: ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     if(snapshot.exists()) {
-                                        Toast.makeText(applicationContext, snapshot.value.toString(), Toast.LENGTH_SHORT).show()
                                         val data = snapshot.value.toString()
                                         latitudeRider = data.toDouble()
                                     } else {
@@ -68,7 +68,6 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                             lon.addValueEventListener(object: ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     if(snapshot.exists()) {
-                                        Toast.makeText(applicationContext, snapshot.value.toString(), Toast.LENGTH_SHORT).show()
                                         val data = snapshot.value.toString()
                                         longitudeRider = data.toDouble()
                                     } else {
@@ -99,9 +98,10 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                 mMap = googleMap
             }
             mMap.uiSettings.isZoomControlsEnabled = false
-
+            Toast.makeText(applicationContext, "CIAO ${arrayList[0].lat}", Toast.LENGTH_LONG).show()
             for(rider in arrayList) {
                 //if(rider.lat != 0.0 && rider.lng != 0.0) {
+                    Toast.makeText(applicationContext, "CIAO ${rider.lat}", Toast.LENGTH_LONG).show()
                     val lat = rider.lat
                     val lng = rider.lng
                     val bord = LatLng(lat, lng)
@@ -113,7 +113,7 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                     )
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bord, 13.0f))
                 //}
-            } }, 3000)
+            } }, 2000)
     }
 
 }

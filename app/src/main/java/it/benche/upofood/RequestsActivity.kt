@@ -59,18 +59,6 @@ class RequestsActivity: AppCompatActivity() {
         listClient = ArrayList()
         listPrices = ArrayList()
         listReq = ArrayList()
-
-        /*val name = "Alfonso"
-        val surname = "Pernico"
-        val via = "Carosio 20"
-        val cap = "15077"
-        val city = "Castelferro"
-        val provence = "AL"
-        val i = Request(name, surname, via, cap, city, provence)
-        arrayList.add(i)
-        arrayList.add(i)
-        arrayList.add(i)
-        arrayList.add(i)*/
         var numeroRider = " "
 
         db.collection("users")
@@ -96,7 +84,7 @@ class RequestsActivity: AppCompatActivity() {
                                                 listPrices.add(document.getDouble("totalPrice").toString())
                                                 listClient.add(document.getString("client").toString())
                                             }
-                                            for(i in 0 until listReq.size) {
+                                            /*for(i in 0 until listReq.size) {
                                                 db.collection("users")
                                                         .document(listClient[i])
                                                         .get()
@@ -113,6 +101,30 @@ class RequestsActivity: AppCompatActivity() {
                                                             val r = Request(name, surname, citta, cap, provincia, via, price, req)
                                                             arrayList.add(r)
                                                         }
+                                            }*/
+                                            for(i in 0 until listReq.size) {
+                                                db.collection("users")
+                                                    .get()
+                                                    .addOnCompleteListener { document ->
+                                                        if(document.isSuccessful) {
+                                                            for(document in document.result!!) {
+                                                                if(document.id == listClient[i]) {
+                                                                    val name = document.getString("nome").toString()
+                                                                    val surname = document.getString("cognome").toString()
+                                                                    val via = document.getString("indirizzo.Via").toString()
+                                                                    val provincia = document.getString("indirizzo.Provincia").toString()
+                                                                    val cap = document.getString("indirizzo.CAP").toString()
+                                                                    val citta = document.getString("indirizzo.Citta").toString()
+                                                                    val req = listReq[i]
+                                                                    val price = listPrices[i]
+
+                                                                    val r = Request(name, surname, citta, cap, provincia, via, price, req)
+                                                                    arrayList.add(r)
+                                                                }
+                                                            }
+                                                        }
+
+                                                    }
                                             }
                                             loadingPanel.visibility = RelativeLayout.GONE
                                             initRecyclerView()

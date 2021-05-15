@@ -54,7 +54,7 @@ open class ActiveTripsFragment : Fragment(), OnMapReadyCallback, LocationListene
     private var mGoogleApiClient: GoogleApiClient? = null
     private lateinit var mLocationRequest: LocationRequest
     private var mFusedLocationClient: FusedLocationProviderClient? = null
-    private var mLocationCallback: LocationCallback = LocationCallback()
+    private var mLocationCallback: LocationCallback? = null
     private var mMap: GoogleMap? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

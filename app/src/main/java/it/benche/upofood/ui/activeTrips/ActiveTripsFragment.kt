@@ -54,7 +54,7 @@ open class ActiveTripsFragment : Fragment(), OnMapReadyCallback, LocationListene
     private var mGoogleApiClient: GoogleApiClient? = null
     private lateinit var mLocationRequest: LocationRequest
     private var mFusedLocationClient: FusedLocationProviderClient? = null
-    private var mLocationCallback: LocationCallback? = null
+    //private var mLocationCallback: LocationCallback = LocationCallback()
     private var mMap: GoogleMap? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -113,10 +113,10 @@ open class ActiveTripsFragment : Fragment(), OnMapReadyCallback, LocationListene
         swipeRefreshLayout = view.findViewById(R.id.refresh)
         swipeRefreshLayout.setOnRefreshListener(this)
 
-        val mapFragment: MapView = view.findViewById(R.id.map)
+        /*val mapFragment: MapView = view.findViewById(R.id.map)
         mapFragment.onCreate(null)
         mapFragment.onResume()
-        mapFragment.getMapAsync(this)
+        mapFragment.getMapAsync(this)*/
 
         Handler().postDelayed({
             loadingPanel.visibility = RelativeLayout.GONE
@@ -190,9 +190,9 @@ open class ActiveTripsFragment : Fragment(), OnMapReadyCallback, LocationListene
         if (ContextCompat.checkSelfPermission(requireActivity(),
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-            mFusedLocationClient?.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
+            //mFusedLocationClient?.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
         }
-        mFusedLocationClient?.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
+        //mFusedLocationClient?.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
     }
 
     override fun onLocationChanged(location: Location) {
@@ -207,7 +207,7 @@ open class ActiveTripsFragment : Fragment(), OnMapReadyCallback, LocationListene
 
         //stop location updates
         if (mGoogleApiClient != null) {
-            mFusedLocationClient?.removeLocationUpdates(mLocationCallback)
+            //mFusedLocationClient?.removeLocationUpdates(mLocationCallback)
         }
     }
 

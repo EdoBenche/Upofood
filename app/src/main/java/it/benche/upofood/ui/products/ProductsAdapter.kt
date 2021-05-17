@@ -111,10 +111,12 @@ class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var nameProduct: TextView? = null
         var priceProduct: TextView? = null
         var imageProduct: ImageView? = null
+        var qtyProduct: TextView? = null
         init {
             nameProduct = itemView.findViewById(R.id.tvProductName)
             priceProduct = itemView.findViewById(R.id.tvDiscountPrice)
             imageProduct = itemView.findViewById(R.id.ivProduct)
+            qtyProduct = itemView.findViewById(R.id.qty)
         }
     }
 
@@ -145,10 +147,12 @@ class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val productPrice = itemView.tvDiscountPrice
         val productImage = itemView.ivProduct
         val clickable = itemView.card
+        val productQty = itemView.qty
 
         fun bind(productCard: Product) {
             productName.text = productCard.name
             productPrice.text = "${productCard.price}€"
+            productQty.text = "${productCard.qty} rimanenti"
 
             val mStorageReference = FirebaseStorage.getInstance().reference.child("images/${productCard.img}")
 

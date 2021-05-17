@@ -157,7 +157,7 @@ class DrawerActivity : AppCompatActivity() {
                         var builder = NotificationCompat.Builder(this, "blabla")
                                 .setSmallIcon(R.drawable.ic_baseline_notification_add_24)
                                 .setContentTitle("Nuovo ordine!")
-                                .setContentText("Hai dei nuovi ordini in sospeso, clicca qui per vederli")
+                                .setContentText("Hai dei nuovi ordini in sospeso, vai su Ordini attivi")
                                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                                 .setContentIntent(pendingIntent)
                                 .setAutoCancel(true)

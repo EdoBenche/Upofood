@@ -39,6 +39,8 @@
         android:layout_marginBottom="16dp"
         android:layout_below="@id/toolbar"
         app:layout_constrainedHeight="true"
+        app:reverseLayout="true"
+        app:stackFromEnd="true"
         app:layout_constraintBottom_toTopOf="@+id/text_gchat_indicator"
         app:layout_constraintTop_toBottomOf="@+id/layout_group_chat"
         tools:ignore="UnknownId" />

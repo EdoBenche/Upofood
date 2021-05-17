@@ -3,6 +3,7 @@ package it.benche.upofood
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,8 +13,10 @@ import it.benche.upofood.utils.RecapProductsAdapter
 import it.benche.upofood.utils.RidersAdapter
 import it.benche.upofood.utils.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_requests.*
+import kotlinx.android.synthetic.main.activity_requests.loadingPanel
 import kotlinx.android.synthetic.main.activity_select_rider.*
 import kotlinx.android.synthetic.main.activity_select_rider.recyView
+import kotlinx.android.synthetic.main.fragment_list_trips.*
 
 class RidersActivity: AppCompatActivity() {
 
@@ -49,6 +52,7 @@ class RidersActivity: AppCompatActivity() {
                                 arrayList.add(r)
                             }
                         }
+                        loadingPanelR.visibility = RelativeLayout.GONE
                         initRecyclerView()
                         addDataSet()
                     } else {

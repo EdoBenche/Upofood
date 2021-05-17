@@ -59,80 +59,53 @@ class RequestsActivity: AppCompatActivity() {
         listClient = ArrayList()
         listPrices = ArrayList()
         listReq = ArrayList()
-        var numeroRider = " "
 
         db.collection("users")
-                .document(uid)
-                .get()
-                .addOnSuccessListener { task ->
-                    list.add(task.getLong("numeroRider").toString())
+            .document(uid)
+            .get()
+            .addOnSuccessListener { task ->
+                list.add(task.getLong("numeroRider").toString())
 
-                    db.collection("requests")
-                            .get()
-                            .addOnCompleteListener { result ->
-                                for(document in result.result!!) {
-                                    if(document.getString("rider").toString() == list[0]) {
-                                        listOrd.add(document.getString("order").toString())
-                                        listReq.add(document.getString("numberRequest").toString())
-
-                                    }
-                                }
-                                db.collection("orders")
+                db.collection("requests")
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if(task.isSuccessful) {
+                            for(document in task.result!!) {
+                                if(document.getString("rider").toString() == list[0]) {
+                                    val req = document.id
+                                    listOrd.add(document.getString("order").toString())
+                                    db.collection("orders")
+                                        .document(listOrd[listOrd.size-1])
                                         .get()
-                                        .addOnCompleteListener { result ->
-                                            for(document in result.result!!) {
-                                                listPrices.add(document.getDouble("totalPrice").toString())
-                                                listClient.add(document.getString("client").toString())
-                                            }
-                                            /*for(i in 0 until listReq.size) {
-                                                db.collection("users")
-                                                        .document(listClient[i])
-                                                        .get()
-                                                        .addOnSuccessListener { document ->
-                                                            val name = document.getString("nome").toString()
-                                                            val surname = document.getString("cognome").toString()
-                                                            val via = document.getString("indirizzo.Via").toString()
-                                                            val provincia = document.getString("indirizzo.Provincia").toString()
-                                                            val cap = document.getString("indirizzo.CAP").toString()
-                                                            val citta = document.getString("indirizzo.Citta").toString()
-                                                            val req = listReq[i]
-                                                            val price = listPrices[i]
+                                        .addOnSuccessListener { document ->
+                                            val user = document.getString("client").toString()
+                                            val price = document.getLong("totalPrice")!!.toString()
 
-                                                            val r = Request(name, surname, citta, cap, provincia, via, price, req)
-                                                            arrayList.add(r)
-                                                        }
-                                            }*/
-                                            for(i in 0 until listReq.size) {
-                                                db.collection("users")
-                                                    .get()
-                                                    .addOnCompleteListener { document ->
-                                                        if(document.isSuccessful) {
-                                                            for(document in document.result!!) {
-                                                                if(document.id == listClient[i]) {
-                                                                    val name = document.getString("nome").toString()
-                                                                    val surname = document.getString("cognome").toString()
-                                                                    val via = document.getString("indirizzo.Via").toString()
-                                                                    val provincia = document.getString("indirizzo.Provincia").toString()
-                                                                    val cap = document.getString("indirizzo.CAP").toString()
-                                                                    val citta = document.getString("indirizzo.Citta").toString()
-                                                                    val req = listReq[i]
-                                                                    val price = listPrices[i]
+                                            db.collection("users")
+                                                .document(user)
+                                                .get()
+                                                .addOnSuccessListener { document ->
+                                                    val name = document.getString("nome").toString()
+                                                    val surname = document.getString("cognome").toString()
+                                                    val via = document.getString("indirizzo.Via").toString()
+                                                    val provincia = document.getString("indirizzo.Provincia").toString()
+                                                    val cap = document.getString("indirizzo.CAP").toString()
+                                                    val citta = document.getString("indirizzo.Citta").toString()
+                                                    val req = req
+                                                    val price = price
 
-                                                                    val r = Request(name, surname, citta, cap, provincia, via, price, req)
-                                                                    arrayList.add(r)
-                                                                }
-                                                            }
-                                                        }
-
-                                                    }
-                                            }
-                                            loadingPanel.visibility = RelativeLayout.GONE
-                                            initRecyclerView()
-                                            addDataSet()
-
+                                                    val r = Request(name, surname, citta, cap, provincia, via, price, req)
+                                                    arrayList.add(r)
+                                                }
                                         }
+                                }
                             }
-                }
+                            loadingPanel.visibility = RelativeLayout.GONE
+                            initRecyclerView()
+                            addDataSet()
+                        }
+                    }
+            }
 
         refreshReq.setOnRefreshListener {
             refreshReq.isRefreshing = false

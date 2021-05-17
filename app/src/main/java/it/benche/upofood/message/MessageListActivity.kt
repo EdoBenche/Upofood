@@ -141,7 +141,7 @@ class MessageListActivity : AppCompatActivity() {
                         "Nuovo messaggio",
                         "userId"
                     )
-                    var sender: Sender = Sender(data, token.getToken())
+                    val sender = Sender(data, token.getToken())
 
                     apiService.sendNotification(sender)
                         .enqueue(object : retrofit2.Callback<MyResponse> {
@@ -197,9 +197,9 @@ class MessageListActivity : AppCompatActivity() {
     }
 
     private fun updateToken(token: String) {
-        var mAuth = FirebaseAuth.getInstance().currentUser
-        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Tokens")
-        var token1: Token = Token(token)
+        val mAuth = FirebaseAuth.getInstance().currentUser
+        val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Tokens")
+        val token1: Token = Token(token)
         reference.child(mAuth.uid).setValue(token1)
     }
 }

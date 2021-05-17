@@ -25,6 +25,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import kotlinx.android.synthetic.main.activity_product_detail.btnAddCart
+import kotlinx.android.synthetic.main.activity_product_detail.btnBuyNow
+import kotlinx.android.synthetic.main.activity_product_detail.cat
+import kotlinx.android.synthetic.main.activity_product_detail.forClients
+import kotlinx.android.synthetic.main.activity_product_detail.forGestors
+import kotlinx.android.synthetic.main.activity_product_detail.ivProduct
+import kotlinx.android.synthetic.main.activity_product_detail.tvName
+import kotlinx.android.synthetic.main.activity_product_detail.tvPrice
+import kotlinx.android.synthetic.main.activity_product_detail2.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.io.File
@@ -38,7 +47,7 @@ class ProductActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_detail)
+        setContentView(R.layout.activity_product_detail2)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -47,8 +56,9 @@ class ProductActivity : AppCompatActivity() {
 
         tvName.text = intent.getStringExtra("NAME")
         tvPrice.text = intent.getStringExtra("PRICE")
-        qty.text = intent.getIntExtra("QTY", 1).toString()
+        //qty.text = intent.getIntExtra("QTY", 1).toString()
         cat.text = intent.getStringExtra("CATEGORY")
+        tvDescription.text = intent.getStringExtra("DESCRIPTION")
 
         val mStorageReference = FirebaseStorage.getInstance().reference.child("images/${intent.getStringExtra("IMG")}")
 

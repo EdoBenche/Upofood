@@ -14,7 +14,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/title"
+        android:id="@+id/titleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
@@ -28,7 +28,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title">
+        android:layout_below="@id/titleText">
 
     <LinearLayout
         android:layout_width="match_parent"

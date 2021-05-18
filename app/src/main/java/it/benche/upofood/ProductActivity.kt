@@ -1,41 +1,22 @@
 package it.benche.upofood
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Bitmap.createScaledBitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.NumberPicker
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.ContentFrameLayout
 import androidx.appcompat.widget.Toolbar
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import it.benche.upofood.utils.extensions.onClick
-import kotlinx.android.synthetic.main.activity_product_detail.*
-import kotlinx.android.synthetic.main.activity_product_detail.btnAddCart
-import kotlinx.android.synthetic.main.activity_product_detail.btnBuyNow
-import kotlinx.android.synthetic.main.activity_product_detail.cat
-import kotlinx.android.synthetic.main.activity_product_detail.forClients
-import kotlinx.android.synthetic.main.activity_product_detail.forGestors
-import kotlinx.android.synthetic.main.activity_product_detail.ivProduct
-import kotlinx.android.synthetic.main.activity_product_detail.tvName
-import kotlinx.android.synthetic.main.activity_product_detail.tvPrice
 import kotlinx.android.synthetic.main.activity_product_detail2.*
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import java.io.File
 import java.io.IOException
 
@@ -107,6 +88,12 @@ class ProductActivity : AppCompatActivity() {
         }
         btnBuyNow.onClick {
             startActivity(Intent(context, ShoppingCartActivity::class.java))
+        }
+        btnModify.onClick {
+            val p = intent.getStringExtra("NAME")
+            val intent = Intent(context, AddProductActivity::class.java)
+            intent.putExtra("PRODUCT", p)
+            startActivity(intent)
         }
     }
 

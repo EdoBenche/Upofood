@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import it.benche.upofood.ProductActivity
@@ -122,7 +124,17 @@ class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 esaurito.visibility = CardView.VISIBLE
                 rimanenti.visibility = CardView.GONE
                 prezzo.visibility = CardView.GONE
-                clickable.isClickable = false
+
+                val db = FirebaseFirestore.getInstance()
+                val mAuth = FirebaseAuth.getInstance()
+                db.collection("users")
+                    .document(mAuth.currentUser.uid)
+                    .get()
+                    .addOnSuccessListener { document ->
+                        if(document.getString("account").toString() != "Gestore") {
+                            clickable.isClickable = false
+                        }
+                    }
             }
         }
     }

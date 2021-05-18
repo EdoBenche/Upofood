@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import it.benche.upofood.utils.extensions.checkIsEmpty
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.activity_signup.*
@@ -56,6 +57,7 @@ class AddProductActivity: AppCompatActivity() {
     private lateinit var dialog: Dialog
     private lateinit var dialog2: Dialog
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
@@ -73,11 +75,31 @@ class AddProductActivity: AppCompatActivity() {
         }
 
         btnAddProduct.onClick {
-            addProductInCloud()
+            if(checkInput()) {
+                addProductInCloud()
+            }
         }
         initCategoriesDialog()
         edtSpinnerCategories.onClick {
             dialog.show()
+        }
+
+        val p = intent.getStringExtra("PRODUCT").toString()
+        Toast.makeText(applicationContext, p, Toast.LENGTH_LONG).show()
+        if(p != "" || p != null) {
+            db.collection("products")
+                .document(p!!)
+                .get()
+                .addOnSuccessListener { document ->
+                    titleText.text = "Modifica prodotto"
+                    edtProduct.setText(document.getString("nomeProdotto").toString())
+                    edtDescription.setText(document.getString("descrizione").toString())
+                    edtPrice.setText(document.getString("prezzo"))
+                    edtQty.setText(document.getString("quantita"))
+                    edtSpinnerCategories.setText(document.getString("categoria").toString())
+                    fileName = document.getString("img").toString()
+                    disableButtons()
+                }
         }
     }
 
@@ -215,6 +237,17 @@ class AddProductActivity: AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun disableButtons() {
+        btnAddProduct.isEnabled = true
+        btnAddProduct.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.md_orange_500))
+        tvAddImage.text = "Immagine aggiunta"
+        tvAddImage.setTextColor(Color.parseColor("#32CD32"))
+        phCheck.setImageResource(R.drawable.ic_check_green)
+        phCheck.setColorFilter(Color.parseColor(("#32CD32")))
+        btnAddImage.isEnabled = false
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         //called when image was captured from camera intent
@@ -222,13 +255,7 @@ class AddProductActivity: AppCompatActivity() {
             //set image captured to image view
             addImgInFirebaseStorage(imageProduct)
 
-            btnAddProduct.isEnabled = true
-            btnAddProduct.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.md_orange_500))
-            tvAddImage.text = "Immagine aggiunta"
-            tvAddImage.setTextColor(Color.parseColor("#32CD32"))
-            phCheck.setImageResource(R.drawable.ic_check_green)
-            phCheck.setColorFilter(Color.parseColor(("#32CD32")))
-            btnAddImage.isEnabled = false
+            disableButtons()
         }
 
         if(resultCode == Activity.RESULT_OK && requestCode == 1000 && type == 0) {
@@ -236,14 +263,7 @@ class AddProductActivity: AppCompatActivity() {
                 imageProduct = data.data!!
             }
             addImgInFirebaseStorage(imageProduct)
-
-            btnAddProduct.isEnabled = true
-            btnAddProduct.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.md_orange_500))
-            tvAddImage.text = "Immagine aggiunta"
-            tvAddImage.setTextColor(Color.parseColor("#32CD32"))
-            phCheck.setImageResource(R.drawable.ic_check_green)
-            phCheck.setColorFilter(Color.parseColor(("#32CD32")))
-            btnAddImage.isEnabled = false
+            disableButtons()
         }
     }
 
@@ -324,6 +344,37 @@ class AddProductActivity: AppCompatActivity() {
         }
         dialog.ivClose.onClick {
             dialog.dismiss()
+        }
+    }
+
+    private fun checkInput(): Boolean {
+        when {
+            edtProduct.checkIsEmpty() -> {
+                edtProduct.error = "Inserire un nome valido"
+                edtProduct.requestFocus()
+                return false
+            }
+            edtDescription.checkIsEmpty() -> {
+                edtDescription.error = "Inserire una descrizione valida"
+                edtDescription.requestFocus()
+                return false
+            }
+            edtPrice.checkIsEmpty() -> {
+                edtPrice.error = "Inserire un prezzo valido"
+                edtPrice.requestFocus()
+                return false
+            }
+            edtQty.checkIsEmpty() -> {
+                edtQty.error = "Inserire una quantità valida"
+                edtQty.requestFocus()
+                return false
+            }
+            edtSpinnerCategories.checkIsEmpty() || edtSpinnerCategories.text.toString() == "Categoria" -> {
+                edtSpinnerCategories.error = "Inserire una categoria valida"
+                edtSpinnerCategories.requestFocus()
+                return false
+            }
+            else -> return true
         }
     }
 }

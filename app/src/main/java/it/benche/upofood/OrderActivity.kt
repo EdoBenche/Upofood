@@ -32,7 +32,8 @@ import it.benche.upofood.utils.TopSpacingItemDecoration
 import it.benche.upofood.utils.extensions.changeBackgroundTint
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_active_order.*
-import kotlinx.android.synthetic.main.activity_order.*
+
+import kotlinx.android.synthetic.main.activity_order2.*
 import kotlinx.android.synthetic.main.activity_shopping_cart.*
 import kotlinx.android.synthetic.main.fragment_list_trips.*
 import kotlinx.android.synthetic.main.fragment_list_trips.refresh
@@ -51,7 +52,7 @@ class OrderActivity: AppCompatActivity() {
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order)
+        setContentView(R.layout.activity_order2)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)

@@ -22,12 +22,20 @@ import it.benche.upofood.utils.TopSpacingItemDecoration
 import it.benche.upofood.utils.extensions.onClick
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.android.synthetic.main.activity_shopping_cart.*
+import kotlinx.android.synthetic.main.activity_shopping_cart.btnSubmitOrder
+import kotlinx.android.synthetic.main.activity_shopping_cart.empty
+import kotlinx.android.synthetic.main.activity_shopping_cart.myListView
+import kotlinx.android.synthetic.main.activity_shopping_cart.total
+import kotlinx.android.synthetic.main.activity_shopping_cart2.*
 import kotlinx.android.synthetic.main.activity_welcome.*
 import kotlinx.android.synthetic.main.confirm_order.*
 import kotlinx.coroutines.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.round
 
 
 class ShoppingCartActivity: AppCompatActivity() {
@@ -37,6 +45,8 @@ class ShoppingCartActivity: AppCompatActivity() {
     lateinit var uid: String
     lateinit var arrayList: ArrayList<Product>
     var totalPrice: Double = 0.0
+    var subtotalPrice: Double = 0.0
+    var taxPrice: Double = 0.0
     lateinit var casual: String
     lateinit var vibrator: Vibrator
 
@@ -44,7 +54,7 @@ class ShoppingCartActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shopping_cart)
+        setContentView(R.layout.activity_shopping_cart2)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -69,12 +79,16 @@ class ShoppingCartActivity: AppCompatActivity() {
                                 val qty: Int = document.getLong("qty")!!.toInt()
                                 val singlePrice: Double? = document.getDouble("price")
 
-                                totalPrice = (totalPrice + (qty * singlePrice!!))
+                                totalPrice += (qty * singlePrice!!)
+                                subtotalPrice = (100*totalPrice)/122
+                                taxPrice = totalPrice - subtotalPrice
 
                                 val p = Product(product, qty)
                                 arrayList.add(p)
                             }
-                            total.text = "$totalPrice €"
+                            subtotal.text = "${String.format("%.2f", subtotalPrice)}€"
+                            tax.text = "${String.format("%.2f", taxPrice)}€"
+                            total.text = "${String.format("%.2f", totalPrice)}€"
                             if(task == null) {
                                 empty.visibility = TextView.VISIBLE
                             }
@@ -110,10 +124,16 @@ class ShoppingCartActivity: AppCompatActivity() {
         }
     }
 
+    fun roundOffDecimal(number: Double): Double? {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble()
+    }
+
     private fun initRecyclerView() {
         myListView.apply {
             layoutManager = LinearLayoutManager(this@ShoppingCartActivity)
-            val topSpacingDecoration = TopSpacingItemDecoration(30,0,0)
+            val topSpacingDecoration = TopSpacingItemDecoration(20,0,0)
             addItemDecoration(topSpacingDecoration)
             productAdapter = CartAdapter()
             ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(myListView)

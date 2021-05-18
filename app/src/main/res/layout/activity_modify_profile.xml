@@ -11,6 +11,14 @@
         app:navigationIcon="@drawable/ic_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/modifica_profilo"
+            android:textColor="@color/md_grey_600"
+            android:textSize="16dp"/>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView

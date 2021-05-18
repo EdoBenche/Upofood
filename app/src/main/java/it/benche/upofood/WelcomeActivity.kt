@@ -25,7 +25,7 @@ class WelcomeActivity : AppIntro() {
         // You can use AppIntroFragment to use a pre-built fragment
         addSlide(AppIntroFragment.newInstance(
             title = "Benvenuto su Upofood!",
-            description = "Il servizio che ti porta il cibo direttamente a casa",
+            description = "Il servizio che ti porta il cibo (e non solo...) direttamente a casa",
             imageDrawable = R.drawable.ic_icon_welcome,
             //backgroundDrawable = R.drawable.ic_appintro_fab_background,
             titleColor = getColor(R.color.md_orange_500),
@@ -38,7 +38,7 @@ class WelcomeActivity : AppIntro() {
 
         addSlide(AppIntroFragment.newInstance(
                 title = "Geolocalizzazione",
-                description = "Per prima cosa ti chiedo il permesso di spiarti",
+                description = "Per prima cosa ti chiedo il permesso per la geolocalizzazione",
                 imageDrawable = R.drawable.ic_geolocalization,
                 //backgroundDrawable = R.drawable.ic_appintro_fab_background,
                 titleColor = getColor(R.color.md_orange_500),
@@ -51,7 +51,7 @@ class WelcomeActivity : AppIntro() {
 
         addSlide(AppIntroFragment.newInstance(
                 title = "Notifiche",
-                description = "Abilita il permesso alle notifiche così resterai in contatto con gli atlri utenti",
+                description = "Abilita il permesso alle notifiche così resterai in contatto con gli altri utenti",
                 imageDrawable = R.drawable.ic_baseline_notifications_active_24,
                 //backgroundDrawable = R.drawable.ic_appintro_fab_background,
                 titleColor = getColor(R.color.md_orange_500),
@@ -64,7 +64,7 @@ class WelcomeActivity : AppIntro() {
 
         addSlide(AppIntroFragment.newInstance(
                 title = "Fotocamera",
-                description = "Ci serve la fotocamera per scattare la foto ai prelibati piatti",
+                description = "Ci serve la fotocamera per scattare la foto ai prodotti qualora tu fossi un gestore",
                 imageDrawable = R.drawable.ic_camera,
                 //backgroundDrawable = R.drawable.ic_appintro_fab_background,
                 titleColor = getColor(R.color.md_orange_500),
@@ -78,7 +78,7 @@ class WelcomeActivity : AppIntro() {
         AppIntroCustomLayoutFragment.newInstance(R.layout.intro_custom_layout1)
         addSlide(AppIntroFragment.newInstance(
             title = "Ora sei pronto ad usare Upofood!",
-            description = "Buon appetito :)",
+            description = "Buona spesa \uD83D\uDE1C",
                 imageDrawable = R.drawable.ic_check,
                 titleColor = getColor(R.color.md_orange_500),
                 descriptionColor = Color.BLACK,

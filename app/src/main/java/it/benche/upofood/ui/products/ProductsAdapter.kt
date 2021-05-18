@@ -74,8 +74,11 @@ class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val productName = itemView.tvProductName
         val productPrice = itemView.tvDiscountPrice
         val productImage = itemView.ivProduct
-        val clickable = itemView.card
+        val clickable: CardView = itemView.card
         val productQty = itemView.qty
+        val esaurito = itemView.esaurito
+        val rimanenti = itemView.qtyCard
+        val prezzo = itemView.priceCard
 
         fun bind(productCard: Product) {
             productName.text = productCard.name
@@ -116,7 +119,10 @@ class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             if(qty == 0) {
-                clickable.visibility = CardView.GONE
+                esaurito.visibility = CardView.VISIBLE
+                rimanenti.visibility = CardView.GONE
+                prezzo.visibility = CardView.GONE
+                clickable.isClickable = false
             }
         }
     }

@@ -99,7 +99,7 @@ class OrdersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private fun initRecyclerView() {
         myListView.apply {
             layoutManager = LinearLayoutManager(context)
-            val topSpacingDecoration = TopSpacingItemDecoration(10,0,0)
+            val topSpacingDecoration = TopSpacingItemDecoration(5,0,0)
             addItemDecoration(topSpacingDecoration)
             ordersAdapter = OrdersAdapter()
             myListView.adapter = ordersAdapter

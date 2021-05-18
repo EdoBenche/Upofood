@@ -136,5 +136,9 @@
     <string name="aggiorna_profilo">Aggiorna profilo</string>
     <string name="aggiorna_negozio">Aggiorna negozio</string>
     <string name="nome_del_negozio">Nome del negozio</string>
+    <string name="ordine_attivo">Ordine attivo</string>
+    <string name="modifica_profilo">Modifica profilo</string>
+    <string name="il_mio_negozio">Il mio negozio</string>
+    <string name="seleziona_rider_per_la_consegna">Seleziona rider per la consegna</string>
 
 </resources>

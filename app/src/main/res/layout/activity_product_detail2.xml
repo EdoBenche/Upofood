@@ -193,7 +193,7 @@
                 android:layout_alignParentBottom="true"
                 android:paddingBottom="20sp"
                 android:layout_gravity="bottom"
-                android:visibility="visible">
+                android:visibility="gone">
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

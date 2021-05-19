@@ -82,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
                             if(document.id == uid.toString()) {
                                 if(document.getString("account").toString() == "Rider") {
                                     setRiderAvailable(document.id)
-                                    Handler().postDelayed({startActivity(Intent(this, DrawerActivityRider::class.java))}, 500)
+                                    Handler().postDelayed({startActivity(Intent(this, DrawerActivityRider2::class.java))}, 500)
                                 }
                                 else if(document.getString("account").toString() == "Cliente") {
                                     startActivity(Intent(this, DrawerActivityClient::class.java))
@@ -148,7 +148,7 @@ class LoginActivity : AppCompatActivity() {
                                     for(document in result) {
                                         if(document.id == uid.toString()) {
                                             if(document.getString("account").toString() == "Rider") {
-                                                startActivity(Intent(this, DrawerActivityRider::class.java))
+                                                startActivity(Intent(this, DrawerActivityRider2::class.java))
                                             }
                                             else if(document.getString("account").toString() == "Cliente") {
                                                 startActivity(Intent(this, DrawerActivityClient::class.java))

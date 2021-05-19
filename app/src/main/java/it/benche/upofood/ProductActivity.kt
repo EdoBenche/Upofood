@@ -1,14 +1,17 @@
 package it.benche.upofood
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Bitmap.createScaledBitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.NumberPicker
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -17,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_product_detail2.*
+import kotlinx.android.synthetic.main.confirm_delete_product.*
 import java.io.File
 import java.io.IOException
 
@@ -25,6 +29,7 @@ class ProductActivity : AppCompatActivity() {
     lateinit var mAuth: FirebaseAuth
     lateinit var db: FirebaseFirestore
     lateinit var pickerQty: NumberPicker
+    lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +39,9 @@ class ProductActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbar.setNavigationOnClickListener { super.onBackPressed() }
+
+
+        dialog = Dialog(this)
 
         tvName.text = intent.getStringExtra("NAME")
         tvPrice.text = intent.getStringExtra("PRICE")
@@ -94,6 +102,29 @@ class ProductActivity : AppCompatActivity() {
             val intent = Intent(context, AddProductActivity::class.java)
             intent.putExtra("PRODUCT", p)
             startActivity(intent)
+        }
+        btnDelete.onClick {
+            askToDelete()
+        }
+    }
+
+    private fun askToDelete() {
+        dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+        dialog.setContentView(R.layout.confirm_delete_product)
+        dialog.window?.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        dialog.show()
+
+        dialog.btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.btnYes.setOnClickListener {
+            db.collection("products")
+                .document(intent.getStringExtra("NAME").toString())
+                .delete()
+                .addOnSuccessListener {
+                    Toast.makeText(applicationContext, "Prodotto eliminato correttamente!", Toast.LENGTH_SHORT).show()
+                    onBackPressed()
+                }
         }
     }
 

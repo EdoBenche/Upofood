@@ -85,8 +85,7 @@ class AddProductActivity: AppCompatActivity() {
         }
 
         val p = intent.getStringExtra("PRODUCT").toString()
-        Toast.makeText(applicationContext, p, Toast.LENGTH_LONG).show()
-        if(p != "" || p != null) {
+        if(p != "null") {
             db.collection("products")
                 .document(p!!)
                 .get()

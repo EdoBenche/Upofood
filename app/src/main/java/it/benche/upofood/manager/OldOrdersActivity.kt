@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.R
 import it.benche.upofood.utils.TopSpacingItemDecoration
@@ -32,6 +33,7 @@ class OldOrdersActivity : AppCompatActivity() {
         arrayList = ArrayList()
 
         db.collection("orders")
+            .orderBy("dateOrder")
             .get()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful) {

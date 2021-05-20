@@ -1,24 +1,21 @@
 package it.benche.upofood
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.os.PersistableBundle
-import android.view.ViewPropertyAnimator
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.HandlerCompat.postDelayed
 import com.airbnb.lottie.LottieAnimationView
 import java.util.*
 
+@Suppress("DEPRECATION")
 class SplashActivity : AppCompatActivity() {
 
-    lateinit var splashImg : ImageView
-    lateinit var lottieAnimationView: LottieAnimationView
+    private lateinit var splashImg : ImageView
+    private lateinit var lottieAnimationView: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
         splashImg = findViewById(R.id.img)
@@ -35,7 +32,7 @@ class SplashActivity : AppCompatActivity() {
     }
 }
 
-private fun Timer.schedule(i: Int, function: () -> Unit) {
+private fun Timer.schedule(i: Int) {
 
 }
 

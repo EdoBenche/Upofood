@@ -15,7 +15,6 @@ import java.util.jar.Manifest
 
 class WelcomeActivity : AppIntro() {
 
-    @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,7 +112,10 @@ class WelcomeActivity : AppIntro() {
                 slideNumber = 3,
                 required = true)
         askForPermissions(
-                permissions = arrayOf(android.Manifest.permission.CAMERA),
+                permissions = arrayOf(
+                    android.Manifest.permission.CAMERA,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 slideNumber = 4,
                 required = true)
     }

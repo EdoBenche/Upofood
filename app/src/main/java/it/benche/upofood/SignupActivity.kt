@@ -91,7 +91,7 @@ class SignupActivity : AppCompatActivity() {
                         }
                         else if(mSpinner.text == "Rider") {
                             addRiderInCloud()
-                            startActivity(Intent(this, DrawerActivity::class.java))
+                            startActivity(Intent(this, DrawerActivityRider2::class.java))
                         }
                     } else {
                         // If sign in fails, display a message to the user.

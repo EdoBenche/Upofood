@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/richieste"
+            android:text="Lista viaggi attivi"
             android:textColor="@color/md_grey_600"
             android:textSize="16dp"/>
     </androidx.appcompat.widget.Toolbar>
@@ -25,10 +25,10 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/refreshReq"
+        android:id="@+id/refreshTrips"
         android:layout_below="@id/toolbar">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyView"
+            android:id="@+id/recViewTrips"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar" />
@@ -41,7 +41,7 @@
         android:layout_below="@id/toolbar"/>
 
     <RelativeLayout
-        android:id="@+id/loadingPanel"
+        android:id="@+id/loadingPanelTrips"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center" >

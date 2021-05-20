@@ -32,6 +32,7 @@ class DrawerActivityRider2 : AppCompatActivity() {
             startActivity(Intent(this, ListManagersActivity::class.java))
         }
         listTrips.setOnClickListener {
+            startActivity(Intent(this, ActiveTripsActivity::class.java))
         }
         
         db.collection("users")

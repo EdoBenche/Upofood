@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.client.MyOldOrdersActivity
 import it.benche.upofood.manager.AddManagerActivity
 import it.benche.upofood.manager.MyShopActivity
+import it.benche.upofood.manager.OldOrdersActivity
 import it.benche.upofood.manager.RidersPositionActivity
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -92,7 +93,7 @@ class ProfileActivity: AppCompatActivity() {
         }
 
         storicoOrdiniGestore.onClick {
-
+            startActivity(Intent(context, OldOrdersActivity::class.java))
         }
 
         myRiders.onClick {

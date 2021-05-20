@@ -1,4 +1,4 @@
-package it.benche.upofood.client
+package it.benche.upofood.manager
 
 import android.os.Bundle
 import android.util.Log
@@ -9,23 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.R
-import it.benche.upofood.Rider
-import it.benche.upofood.ui.orders.OrdersAdapter
-import it.benche.upofood.utils.OldOrdersAdapter
-import it.benche.upofood.utils.RidersAdapter
 import it.benche.upofood.utils.TopSpacingItemDecoration
-import kotlinx.android.synthetic.main.activity_order.*
-import kotlinx.android.synthetic.main.activity_requests.*
 import kotlinx.android.synthetic.main.activity_select_rider.*
-import kotlinx.android.synthetic.main.activity_select_rider.recyView
 
-class MyOldOrdersActivity : AppCompatActivity() {
+class OldOrdersActivity : AppCompatActivity() {
 
-    lateinit var db: FirebaseFirestore
-    lateinit var mAuth: FirebaseAuth
-    lateinit var uid: String
-    lateinit var arrayList: ArrayList<Order>
-
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    private lateinit var arrayList: ArrayList<Order>
     private lateinit var ordersAdapter: OldOrdersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +26,7 @@ class MyOldOrdersActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbar.setNavigationOnClickListener { super.onBackPressed() }
-        titleActivity.text = "I miei vecchi ordini"
-
+        titleActivity.text = "Storico ordini"
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
         arrayList = ArrayList()
@@ -46,7 +36,7 @@ class MyOldOrdersActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if(task.isSuccessful) {
                     for (document in task.result!!) {
-                        if(document.getString("client").toString() == mAuth.uid && document.getString("isDelivered").toString() == "yes") {
+                        if(document.getString("isDelivered").toString() == "yes") {
                             val numberOrder = document.id
                             val date = document.getString("dateOrder").toString()
                             val aaaa = date.substring(0, 4)
@@ -54,9 +44,18 @@ class MyOldOrdersActivity : AppCompatActivity() {
                             val gg = date.substring(6, 8)
                             val d = "$gg/$mm/$aaaa"
                             val totalPrice = document.getLong("totalPrice")!!.toDouble()
-
-                            val o = Order(numberOrder, d, totalPrice)
-                            arrayList.add(o)
+                            val rating1 = document.getString("ratingQuality").toString()
+                            val rating2 = document.getString("ratingFast").toString()
+                            val rating3 = document.getString("ratingCourtesy").toString()
+                            val status = document.getString("deliveryState").toString()
+                            db.collection("users")
+                                .document(document.getString("client").toString())
+                                .get()
+                                .addOnSuccessListener { doc ->
+                                    val client = "${doc.getString("nome").toString()} ${doc.getString("cognome").toString()}"
+                                    val o = Order(numberOrder, d, client, totalPrice, status, rating1, rating2, rating3)
+                                    arrayList.add(o)
+                                }
                         }
                     }
 
@@ -88,8 +87,8 @@ class MyOldOrdersActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         recyView.apply {
-            layoutManager = LinearLayoutManager(this@MyOldOrdersActivity)
-            val topSpacingDecoration = TopSpacingItemDecoration(30,0,0)
+            layoutManager = LinearLayoutManager(this@OldOrdersActivity)
+            val topSpacingDecoration = TopSpacingItemDecoration(20,0,0)
             addItemDecoration(topSpacingDecoration)
             ordersAdapter = OldOrdersAdapter()
             recyView.adapter = ordersAdapter
@@ -98,4 +97,4 @@ class MyOldOrdersActivity : AppCompatActivity() {
     }
 }
 
-class Order(val number: String, val date: String, val totalPrice: Double)
+class Order(val number: String, val date: String, val client: String, val totalPrice: Double, val status: String, val rating1: String, val rating2: String, val rating3: String)

@@ -37,6 +37,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity android:name=".manager.OldOrdersActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".client.MyOldOrdersActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".manager.RidersPositionActivity"
@@ -71,6 +73,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddProductActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ActiveTripsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DrawerActivity"

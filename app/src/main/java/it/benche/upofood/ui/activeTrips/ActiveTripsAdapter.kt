@@ -134,7 +134,8 @@ class ActiveTripsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 db.collection("orders")
                         .document(tripCard.order)
                         .update(mapOf(
-                                "deliveryState" to "Non consegnato"
+                                "deliveryState" to "Non consegnato",
+                                "isDelivered" to "yes"
                         ))
                         .addOnSuccessListener {
                             Toast.makeText(context, "Non consegnato, swipe to refresh", Toast.LENGTH_LONG).toString()

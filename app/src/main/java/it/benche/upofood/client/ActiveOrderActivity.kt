@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -194,7 +195,9 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
                 .document(order.toString())
                 .get()
                 .addOnSuccessListener { document ->
-                    if(document.getString("rider").toString() == ""){ infoRider.visibility = LinearLayout.GONE}
+                    if(document.getString("rider").toString() == "") {
+                        infoRider.visibility = LinearLayout.GONE
+                    }
                     totOrdine.text = "Totale ordine: ${document.getDouble("totalPrice")}€"
                     when {
                         document.getString("deliveryState") == "Wait" -> {
@@ -241,6 +244,12 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
                             for(document in result.result!!) {
                                 if(document.getLong("numeroRider").toString() == rider.toString()) {
                                     nameRider.text = "${document.getString("nome").toString()}"
+
+                                    if(document.getString("vehicle").toString() != "null") {
+                                        infoVehicle.text = "Il rider arriverà in ${document.getString("vehicle").toString()}"
+                                        infoVehicle.visibility = TextView.VISIBLE
+                                    }
+
                                     idRider.add(document.id)
                                     if(document.getLong("numeroRider").toString() != "") {
                                         val database = FirebaseDatabase.getInstance()

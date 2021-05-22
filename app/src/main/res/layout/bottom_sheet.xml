@@ -31,36 +31,59 @@
                 android:layout_marginBottom="10dp"/>
 
             <LinearLayout
-                android:id="@+id/infoRider"
                 android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:layout_marginBottom="20dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/infoRider"
+                    android:layout_width="match_parent"
+                    android:layout_height="57dp"
+                    android:layout_marginBottom="10dp">
 
-                <ImageView
-                    android:id="@+id/imgRider"
-                    android:layout_width="57dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_person" />
+                    <ImageView
+                        android:id="@+id/imgRider"
+                        android:layout_width="57dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_person"
+                        android:contentDescription="TODO" />
 
+                    <TextView
+                        android:id="@+id/nameRider"
+                        style="@style/TextAppearance.AppCompat.Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.9"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/toChat"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/ic_baseline_chat_24"
+                        app:tint="@color/md_orange_500" />
+                </LinearLayout>
                 <TextView
-                    android:id="@+id/nameRider"
-                    style="@style/TextAppearance.AppCompat.Large"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/infoVehicle"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.9"
-                    android:textColor="@color/white" />
+                    android:text="Il rider arriverà in "
+                    android:textSize="16dp"
+                    android:textColor="@color/white"/>
 
-                <ImageView
-                    android:id="@+id/toChat"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.1"
-                    android:src="@drawable/ic_baseline_chat_24"
-                    app:tint="@color/md_orange_500" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
             </LinearLayout>
+
+
+
 
             <TextView
                 android:id="@+id/ilTuoOrdine"

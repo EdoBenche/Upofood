@@ -1,25 +1,17 @@
 package it.benche.upofood
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.location.Geocoder
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.provider.SyncStateContract
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.maps.android.SphericalUtil.computeDistanceBetween
-import com.google.type.LatLng
 import it.benche.upofood.models.Address
 import it.benche.upofood.utils.SimpleLocation
 import it.benche.upofood.utils.extensions.checkIsEmpty
@@ -27,20 +19,15 @@ import it.benche.upofood.utils.extensions.onClick
 import it.benche.upofood.utils.extensions.showError
 import it.benche.upofood.utils.Constants
 import it.benche.upofood.utils.extensions.isGPSEnable
-import kotlinx.android.synthetic.main.activity_active_order.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.activity_add_address.*
-import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.added_user_dialog.*
 import java.io.IOException
-import java.lang.RuntimeException
 
+@Suppress("DEPRECATION")
 class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-    private lateinit var dialog: Dialog
     private var address: Address? = null
     private var simpleLocation: SimpleLocation? = null
     private var addressId: Int? = -1
@@ -52,7 +39,7 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_address)
 
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
         shopAddress = ArrayList()
         checkInArray = Array(1) {false}
@@ -162,10 +149,9 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
 
 
         // Add a new document with a generated ID
-        val TAG: String = "AddAddressActivity";
-        var uid: String? = mAuth.uid
+        val uid: String? = mAuth.uid
         if (uid != null) {
-            var user1 = db.collection("users").document(uid)
+            val user1 = db.collection("users").document(uid)
             user1.update("indirizzo", address)
         }
         confirmed()

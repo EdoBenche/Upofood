@@ -13,6 +13,7 @@ import it.benche.upofood.manager.AddManagerActivity
 import it.benche.upofood.manager.MyShopActivity
 import it.benche.upofood.manager.OldOrdersActivity
 import it.benche.upofood.manager.RidersPositionActivity
+import it.benche.upofood.rider.MyVehicleActivity
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -102,7 +103,7 @@ class ProfileActivity: AppCompatActivity() {
 
         //Bottoni cliente
         tvManageAddress.onClick {
-
+            startActivity(Intent(context, AddAddressActivity::class.java))
         }
 
         tvMyOrders.onClick {
@@ -116,7 +117,7 @@ class ProfileActivity: AppCompatActivity() {
         }
 
         myTransport.onClick {
-
+            startActivity(Intent(context, MyVehicleActivity::class.java))
         }
     }
 

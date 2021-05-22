@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parentRelative"
+    android:background="@color/colorBackground">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="@android:color/transparent"
+        app:navigationIcon="@drawable/ic_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Il mio mezzo di trasporto"
+            android:textColor="@color/md_grey_600"
+            android:textSize="16dp"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_below="@id/toolbar">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Con quale veicolo effettui le consegne?"
+            android:textSize="20dp"/>
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <RadioButton
+                android:id="@+id/radioBike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bicicletta 🚲"
+                android:textColor="@color/md_grey_700"
+                android:textSize="18dp"/>
+            <RadioButton
+                android:id="@+id/radioScooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_grey_700"
+                android:text="Scooter 🛵"
+                android:textSize="18dp"/>
+            <RadioButton
+                android:id="@+id/radioMonopattino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_grey_700"
+                android:text="Monopattino 🛴"
+                android:textSize="18dp"/>
+            <RadioButton
+                android:id="@+id/radioCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_grey_700"
+                android:text="Automobile 🚗"
+                android:textSize="18dp"/>
+            <RadioButton
+                android:id="@+id/radioSpace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_grey_700"
+                android:text="Space Shuttle 🚀"
+                android:textSize="18dp"/>
+
+        </RadioGroup>
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informazioni aggiuntive"
+            android:textSize="20dp"/>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="Marca">
+
+            <EditText
+                android:id="@+id/marca"
+                style="@style/TextInputEditTextStyle"
+                android:backgroundTint="@color/white"
+                android:singleLine="false"
+                android:gravity="top"
+                android:lines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:hint="Modello">
+
+            <EditText
+                android:id="@+id/modello"
+                style="@style/TextInputEditTextStyle"
+                android:backgroundTint="@color/white"
+                android:singleLine="false"
+                android:gravity="top"
+                android:lines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSaveVehicle"
+            style="@style/Button1"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="Salva" />
+    </LinearLayout>
+
+</RelativeLayout>

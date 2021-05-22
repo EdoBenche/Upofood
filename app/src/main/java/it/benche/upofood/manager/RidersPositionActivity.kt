@@ -29,8 +29,8 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var mMap: GoogleMap
 
-    private var latitudeRider = 0.0
-    private var longitudeRider = 0.0
+    var latitudeRider  by Delegates.notNull<Double>()
+    var longitudeRider  by Delegates.notNull<Double>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,24 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     if(snapshot.exists()) {
                                         val data = snapshot.value.toString()
-                                        latitudeRider = data.toDouble()
+                                        val lat = data.toDouble()
+                                        val lon = db.getReference("riders").child(document.id).child("lng")
+                                        lon.addValueEventListener(object: ValueEventListener {
+                                            override fun onDataChange(snapshot: DataSnapshot) {
+                                                if(snapshot.exists()) {
+                                                    val data = snapshot.value.toString()
+                                                    val lon = data.toDouble()
+                                                    val r = Rider(name, number!!, lat, lon)
+                                                    arrayList.add(r)
+                                                } else {
+                                                    longitudeRider = 0.0
+                                                }
+                                            }
+
+                                            override fun onCancelled(error: DatabaseError) {
+                                                TODO()
+                                            }
+                                        })
                                     } else {
                                         latitudeRider = 0.0
                                     }
@@ -63,34 +80,28 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                                     TODO()
                                 }
                             })
-
-                            val lon = db.getReference("riders").child(document.id).child("lng")
-                            lon.addValueEventListener(object: ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if(snapshot.exists()) {
-                                        val data = snapshot.value.toString()
-                                        longitudeRider = data.toDouble()
-                                    } else {
-                                        longitudeRider = 0.0
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    TODO()
-                                }
-                            })
-
-                            val r = Rider(name, number!!, latitudeRider, longitudeRider)
-                            arrayList.add(r)
                         }
                     }
                 }
             }
 
+        mapFragment = supportFragmentManager
+            .findFragmentById(R.id.mapRiders) as SupportMapFragment
+        mapFragment.onCreate(null)
+        mapFragment.onResume()
+        mapFragment.getMapAsync(this)
+
         goBack.onClick {
             onBackPressed()
         }
+        refresh.onClick {
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        }
     }
+
     override fun onMapReady(googleMap: GoogleMap?) {
         Handler().postDelayed({
             MapsInitializer.initialize(mapFragment.requireContext())
@@ -98,22 +109,20 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                 mMap = googleMap
             }
             mMap.uiSettings.isZoomControlsEnabled = false
-            Toast.makeText(applicationContext, "CIAO ${arrayList[0].lat}", Toast.LENGTH_LONG).show()
-            for(rider in arrayList) {
+            for(i in 0 until arrayList.size) {
                 //if(rider.lat != 0.0 && rider.lng != 0.0) {
-                    Toast.makeText(applicationContext, "CIAO ${rider.lat}", Toast.LENGTH_LONG).show()
-                    val lat = rider.lat
-                    val lng = rider.lng
+                    val lat = arrayList[i].lat
+                    val lng = arrayList[i].lng
                     val bord = LatLng(lat, lng)
                     mMap.addMarker(
                         MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_rider))
                             .position(
                                 bord
-                            ).title(rider.name)
+                            ).title(arrayList[i].name)
                     )
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bord, 13.0f))
                 //}
-            } }, 2000)
+            } }, 2500)
     }
 
 }

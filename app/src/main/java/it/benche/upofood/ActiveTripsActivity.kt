@@ -1,18 +1,29 @@
 package it.benche.upofood
 
+import android.Manifest
+import android.app.PendingIntent
 import android.content.ContentValues
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Criteria
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.utils.ActiveTripsAdapter
 import it.benche.upofood.utils.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_active_trips.*
-import kotlinx.android.synthetic.main.activity_requests.*
+
 
 class ActiveTripsActivity : AppCompatActivity() {
 
@@ -24,6 +35,10 @@ class ActiveTripsActivity : AppCompatActivity() {
     private lateinit var client: ArrayList<String>
     private lateinit var price: ArrayList<String>
     private lateinit var order: ArrayList<String>
+
+    private var locationManager: LocationManager? = null
+    private var provider: String? = null
+    var mContext: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,6 +114,42 @@ class ActiveTripsActivity : AppCompatActivity() {
             startActivity(intent);
             overridePendingTransition(0, 0);
         }
+
+        mContext = this
+        locationManager = (mContext as ActiveTripsActivity).getSystemService(LOCATION_SERVICE) as LocationManager
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
+        locationManager!!.requestLocationUpdates(
+            LocationManager.GPS_PROVIDER,
+            2000L,
+            10F, locationListenerGPS
+        )
+
+    }
+
+    private var locationListenerGPS: LocationListener = LocationListener { location ->
+        val latitude = location.latitude
+        val longitude = location.longitude
+        //val msg = "New Latitude: " + latitude + "New Longitude: " + longitude
+        //Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show()
+        val c = Coordinate(latitude, longitude)
+        var database = FirebaseDatabase.getInstance();
+        mAuth.uid?.let { database.getReference("riders").child(it).setValue(c) };
     }
 
     private fun addDataSet() {
@@ -114,6 +165,17 @@ class ActiveTripsActivity : AppCompatActivity() {
             recViewTrips.adapter = activeTripsAdapter
         }
     }
+
+    /*override fun onLocationChanged(location: Location) {
+        var latitude = location!!.latitude
+        var longitude = location!!.longitude
+        val c = Coordinate(latitude, longitude)
+        Toast.makeText(applicationContext, "CIAO", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, c.toString(), Toast.LENGTH_SHORT).show()
+        var database = FirebaseDatabase.getInstance();
+        mAuth.uid?.let { database.getReference("riders").child(it).setValue(c) };
+    }*/
 }
 
 class Trips(val name: String, val address: String, val toPay: String, val order: String, val clientId: String)
+class Coordinate(val lat: Double, val lng: Double)

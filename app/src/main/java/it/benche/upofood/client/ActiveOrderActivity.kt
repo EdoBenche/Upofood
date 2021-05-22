@@ -257,9 +257,9 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
                                         lat.addValueEventListener(object: ValueEventListener {
                                             override fun onDataChange(snapshot: DataSnapshot) {
                                                 if(snapshot.exists()) {
-                                                    Toast.makeText(applicationContext, snapshot.value.toString(), Toast.LENGTH_SHORT).show()
                                                     val data = snapshot.value.toString()
                                                     latitudeRider = data.toDouble()
+                                                    updateMap()
                                                 } else {
                                                     latitudeRider = 0.0
                                                 }
@@ -273,7 +273,6 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
                                         lon.addValueEventListener(object: ValueEventListener {
                                             override fun onDataChange(snapshot: DataSnapshot) {
                                                 if(snapshot.exists()) {
-                                                    Toast.makeText(applicationContext, snapshot.value.toString(), Toast.LENGTH_SHORT).show()
                                                     val data = snapshot.value.toString()
                                                     longitudeRider = data.toDouble()
                                                 } else {
@@ -315,6 +314,30 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
             listOrderAdapter = ListOrderAdapter()
             recView.adapter = listOrderAdapter
         }
+
+    }
+
+    private fun updateMap() {
+        Handler().postDelayed({
+            val lat1 = latitude
+            val lng1 = longitude
+            val bord = LatLng(lat1, lng1)
+
+            val lat2 = latitudeRider
+            val lng2 = longitudeRider
+            val bord2 = LatLng(lat2, lng2)
+            mMap.clear()
+            mMap.addMarker(
+                MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)).position(
+                    bord
+                ).title("La tua posizione")
+            )
+            mMap.addMarker(
+                MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_rider))
+                    .position(
+                        bord2
+                    ).title("Rider")
+            )}, 2000)
 
     }
 

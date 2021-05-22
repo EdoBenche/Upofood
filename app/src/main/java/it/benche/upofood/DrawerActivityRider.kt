@@ -122,4 +122,3 @@ class DrawerActivityRider : AppCompatActivity() {
 }
 
 class User(val riderID: String, val coord: Coordinate)
-class Coordinate(val lat: Double, val lng: Double)

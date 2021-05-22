@@ -31,11 +31,11 @@
                 android:layout_marginBottom="10dp"/>
 
             <LinearLayout
+                android:id="@+id/infoRider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/infoRider"
                     android:layout_width="match_parent"
                     android:layout_height="57dp"
                     android:layout_marginBottom="10dp">
@@ -81,8 +81,6 @@
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray"/>
             </LinearLayout>
-
-
 
 
             <TextView

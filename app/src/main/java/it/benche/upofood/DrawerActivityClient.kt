@@ -126,7 +126,7 @@ class DrawerActivityClient : AppCompatActivity() {
                 .addOnCompleteListener { result ->
                     if(result.isSuccessful) {
                         for(document in result.result!!) {
-                            if(((document.getString("client").toString() == mAuth.currentUser.uid) && (document.getString("isDelivered").toString() == "no") && (document.getString("isPaid").toString() == "no") && (document.getString("deliveryState").toString() != "Non consegnato")) || (document.getString("client").toString() == mAuth.currentUser.uid && document.getString("ratingCourtesy").toString() == "null")) {
+                            if(((document.getString("client").toString() == mAuth.currentUser.uid) && (document.getString("isDelivered").toString() == "no")) || (document.getString("client").toString() == mAuth.currentUser.uid && document.getString("deliveryState").toString() == "Consegnato") && document.getString("isDelivered").toString() == "no") {
                                 val intent = Intent(this, ActiveOrderActivity::class.java)
                                 intent.putExtra("CLIENT", mAuth.currentUser.uid)
                                 intent.putExtra("ORDER", document.id)

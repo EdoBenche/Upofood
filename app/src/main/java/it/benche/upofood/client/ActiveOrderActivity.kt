@@ -51,8 +51,8 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mAuth: FirebaseAuth
     var latitude by Delegates.notNull<Double>()
     var longitude by Delegates.notNull<Double>()
-    var latitudeRider  by Delegates.notNull<Double>()
-    var longitudeRider  by Delegates.notNull<Double>()
+    var latitudeRider  /*by Delegates.notNull<Double>()*/ = 0.0
+    var longitudeRider  /*by Delegates.notNull<Double>()*/ = 0.0
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var arrayList: ArrayList<Product>
 
@@ -127,9 +127,10 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
             db.collection("orders")
                     .document(intent.getStringExtra("ORDER").toString())
                     .update(mapOf(
-                            "ratingQuality" to ratingQuality.toString(),
-                            "ratingFast" to ratingFast.toString(),
-                            "ratingCourtesy" to ratingCourtesy.toString()
+                        "ratingQuality" to ratingQuality.toString(),
+                        "ratingFast" to ratingFast.toString(),
+                        "ratingCourtesy" to ratingCourtesy.toString(),
+                        "isDelivered" to "yes"
                     ))
                     .addOnSuccessListener {
                         startActivity(Intent(context, DrawerActivityClient::class.java))
@@ -137,7 +138,15 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
         }
 
         homeBad.onClick {
-            startActivity(Intent(context, DrawerActivityClient::class.java))
+            db.collection("orders")
+                .document(intent.getStringExtra("ORDER").toString())
+                .update(mapOf(
+                    "isDelivered" to "yes"
+                ))
+                .addOnSuccessListener {
+                    startActivity(Intent(context, DrawerActivityClient::class.java))
+                }
+
         }
 
         toChat.onClick {
@@ -369,7 +378,7 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
                 )
             }
 
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bord, 13.0f))}, 2500)
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bord, 13.0f))}, 1000)
 
 
 

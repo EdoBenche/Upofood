@@ -98,7 +98,6 @@ class ActiveTripsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 db.collection("orders")
                     .document(tripCard.order)
                     .update(mapOf(
-                        "isDelivered" to "yes",
                         "isPaid" to "yes",
                         "deliveryState" to "Consegnato"
                     ))

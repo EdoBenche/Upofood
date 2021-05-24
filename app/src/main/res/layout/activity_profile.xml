@@ -71,6 +71,10 @@
             android:textSize="@dimen/font_size_large" />
 
         <TextView
+            android:id="@+id/deleteCache"
+            style="@style/AccountLabel"
+            android:text="Svuota la cache" />
+        <TextView
             android:id="@+id/modifyProfile"
             style="@style/AccountLabel"
             android:text="@string/modifyProfile" />

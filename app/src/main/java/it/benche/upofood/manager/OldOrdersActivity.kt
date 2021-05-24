@@ -66,7 +66,7 @@ class OldOrdersActivity : AppCompatActivity() {
                     addDataSet()
                 } else {
                     Log.w(
-                        "MyOldOrdersActivity",
+                        "OldOrdersActivity",
                         "Error getting documents.",
                         task.exception
                     )

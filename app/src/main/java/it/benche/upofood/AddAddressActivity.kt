@@ -108,11 +108,11 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
     override fun onPositionChanged() {
         val address = simpleLocation?.address
         if (address != null) {
-            edtProvincia.setText(address.adminArea)
+            edtProvincia.setText(address.subAdminArea)
             edtPinCode.setText(address.postalCode)
             edtCity.setText(address.locality)
             if (address.getAddressLine(0) != null) {
-                edtAddress.setText(address.getAddressLine(0))
+                edtAddress.setText("${address.thoroughfare}, ${address.subThoroughfare}")
             }
             simpleLocation?.endUpdates()
         }

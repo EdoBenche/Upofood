@@ -1,5 +1,6 @@
 package it.benche.upofood.manager
 
+import android.location.Geocoder
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
@@ -16,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.R
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_position_riders.*
+import java.io.IOException
 import java.util.ArrayList
 import kotlin.properties.Delegates
 
@@ -25,12 +27,17 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
     private lateinit var database: FirebaseFirestore
     private lateinit var db: FirebaseDatabase
     private lateinit var arrayList: ArrayList<Rider>
+    private lateinit var shopAddress: ArrayList<String>
 
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var mMap: GoogleMap
+    private lateinit var posShop: LatLng
 
     var latitudeRider  by Delegates.notNull<Double>()
     var longitudeRider  by Delegates.notNull<Double>()
+
+    var latitudeShop by Delegates.notNull<Double>()
+    var longitudeShop by Delegates.notNull<Double>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +46,7 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
         database = FirebaseFirestore.getInstance()
         db = FirebaseDatabase.getInstance()
         arrayList = ArrayList()
+        shopAddress = ArrayList()
 
         database.collection("users")
             .get()
@@ -85,6 +93,32 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                 }
             }
 
+
+        database.collection("shop")
+            .document("info")
+            .get()
+            .addOnSuccessListener { document ->
+                shopAddress.add(document.getString("address.Via").toString())
+                shopAddress.add(document.getString("address.Citta").toString())
+                shopAddress.add(document.getString("address.CAP").toString())
+
+                var geocodeMatches: List<android.location.Address>? = null
+
+                try {
+                    geocodeMatches = Geocoder(this.applicationContext).getFromLocationName(
+                        "${shopAddress[0]}, ${shopAddress[1]}, ${shopAddress[2]}", 1
+                    )
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+
+                if (geocodeMatches != null) {
+                    var latitudeShop = geocodeMatches[0].latitude
+                    var longitudeShop = geocodeMatches[0].longitude
+                    posShop = LatLng(latitudeShop, longitudeShop)
+                }
+            }
+
         mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapRiders) as SupportMapFragment
         mapFragment.onCreate(null)
@@ -109,13 +143,21 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                 mMap = googleMap
             }
             mMap.uiSettings.isZoomControlsEnabled = false
+
+            mMap.addMarker(
+                MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.shop))
+                    .position(
+                        posShop
+                    ).title("Negozio")
+            )
+
             for(i in 0 until arrayList.size) {
                 //if(rider.lat != 0.0 && rider.lng != 0.0) {
                     val lat = arrayList[i].lat
                     val lng = arrayList[i].lng
                     val bord = LatLng(lat, lng)
                     mMap.addMarker(
-                        MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_rider))
+                        MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.dman))
                             .position(
                                 bord
                             ).title(arrayList[i].name)

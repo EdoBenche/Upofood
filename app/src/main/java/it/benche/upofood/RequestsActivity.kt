@@ -79,7 +79,7 @@ class RequestsActivity: AppCompatActivity() {
                                         .get()
                                         .addOnSuccessListener { document ->
                                             val user = document.getString("client").toString()
-                                            val price = document.getLong("totalPrice")!!.toString()
+                                            val price = document.getDouble("totalPrice")!!.toString()
 
                                             db.collection("users")
                                                 .document(user)

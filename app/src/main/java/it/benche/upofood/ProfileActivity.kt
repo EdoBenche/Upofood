@@ -3,6 +3,7 @@ package it.benche.upofood
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
@@ -13,6 +14,7 @@ import it.benche.upofood.manager.AddManagerActivity
 import it.benche.upofood.manager.MyShopActivity
 import it.benche.upofood.manager.OldOrdersActivity
 import it.benche.upofood.manager.RidersPositionActivity
+import it.benche.upofood.rider.MyOldTripsActivity
 import it.benche.upofood.rider.MyVehicleActivity
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -79,6 +81,11 @@ class ProfileActivity: AppCompatActivity() {
             startActivity(Intent(context,LoginActivity::class.java))
         }
 
+        deleteCache.onClick {
+            context.cacheDir.deleteRecursively()
+            Toast.makeText(context, "La cache è stata pulita con successo!", Toast.LENGTH_SHORT).show()
+        }
+
         modifyProfile.onClick {
             modifyProfile()
         }
@@ -113,7 +120,7 @@ class ProfileActivity: AppCompatActivity() {
 
         //Bottoni rider
         storicoViaggi.onClick {
-
+            startActivity(Intent(context, MyOldTripsActivity::class.java))
         }
 
         myTransport.onClick {

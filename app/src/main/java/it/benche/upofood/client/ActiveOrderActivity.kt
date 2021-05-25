@@ -342,7 +342,7 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
                 ).title("La tua posizione")
             )
             mMap.addMarker(
-                MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_rider))
+                MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.dman))
                     .position(
                         bord2
                     ).title("Rider")

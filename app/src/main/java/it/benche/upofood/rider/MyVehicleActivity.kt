@@ -23,7 +23,9 @@ class MyVehicleActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
@@ -85,5 +87,10 @@ class MyVehicleActivity : AppCompatActivity() {
                     Toast.makeText(this, "Ops... qualcosa è andato storto! Prego, riprovare", Toast.LENGTH_SHORT).show()
                 }
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

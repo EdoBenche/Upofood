@@ -19,7 +19,9 @@ class MyShopActivity: AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
         db = FirebaseFirestore.getInstance()
 
@@ -41,7 +43,7 @@ class MyShopActivity: AppCompatActivity() {
                     }
                 }
 
-        btnSave.onClick {
+        btnSave.setOnClickListener {
             updateShop()
         }
     }
@@ -70,5 +72,10 @@ class MyShopActivity: AppCompatActivity() {
                 .addOnFailureListener {
 
                 }
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

@@ -38,7 +38,7 @@ class AddManagerActivity: AppCompatActivity() {
         edtEmail.isEnabled = true
         btnSave.text = "Invia"
 
-        btnSave.onClick {
+        btnSave.setOnClickListener {
             sendInfo()
         }
     }

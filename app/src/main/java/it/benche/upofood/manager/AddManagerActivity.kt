@@ -1,8 +1,8 @@
 package it.benche.upofood.manager
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,13 +13,14 @@ import it.benche.upofood.LoginActivity
 import it.benche.upofood.R
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_modify_profile.*
-import kotlinx.android.synthetic.main.activity_signup.*
 
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class AddManagerActivity: AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modify_profile)

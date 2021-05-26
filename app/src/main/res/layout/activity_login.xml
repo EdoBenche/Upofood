@@ -161,10 +161,12 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         tools:ignore="VectorDrawableCompat" />
-                    <com.google.android.gms.common.SignInButton
+                    <ImageView
                         android:id="@+id/sign_in_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/ic_search"
                         tools:ignore="VectorDrawableCompat" />
                 </LinearLayout>
             </LinearLayout>

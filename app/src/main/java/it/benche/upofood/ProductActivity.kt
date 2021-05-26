@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.confirm_delete_product.*
 import java.io.File
 import java.io.IOException
 
+@Suppress("DEPRECATION")
 class ProductActivity : AppCompatActivity() {
 
     lateinit var mAuth: FirebaseAuth
@@ -56,8 +57,8 @@ class ProductActivity : AppCompatActivity() {
             mStorageReference.getFile(localFile)
                     .addOnSuccessListener {
                         var bitmap: Bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-                        var height = ivProduct.height
-                        var width = ivProduct.width
+                        val height = ivProduct.height
+                        val width = ivProduct.width
                         bitmap = createScaledBitmap(bitmap, width, height, true)
                         ivProduct.setImageBitmap(bitmap)
                     }
@@ -68,7 +69,7 @@ class ProductActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        var uid = mAuth.uid
+        val uid = mAuth.uid
         db.collection("users")
                 .get()
                 .addOnSuccessListener { result ->
@@ -141,8 +142,8 @@ class ProductActivity : AppCompatActivity() {
 // Add a new document with a generated ID
 
 // Add a new document with a generated ID
-        val TAG: String = "ProductActivity";
-        var uid: String? = mAuth.uid
+        val TAG = "ProductActivity"
+        val uid: String? = mAuth.uid
         if (uid != null) {
             db.collection("carts")
                     .document(uid)

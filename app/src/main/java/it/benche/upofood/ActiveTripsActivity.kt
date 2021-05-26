@@ -1,18 +1,14 @@
 package it.benche.upofood
 
 import android.Manifest
-import android.app.PendingIntent
 import android.content.ContentValues
 import android.content.Context
 import android.content.pm.PackageManager
-import android.location.Criteria
-import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
@@ -46,7 +42,9 @@ class ActiveTripsActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
@@ -109,10 +107,10 @@ class ActiveTripsActivity : AppCompatActivity() {
 
         refreshTrips.setOnRefreshListener {
             refreshTrips.isRefreshing = false
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
         }
 
         mContext = this
@@ -145,11 +143,9 @@ class ActiveTripsActivity : AppCompatActivity() {
     private var locationListenerGPS: LocationListener = LocationListener { location ->
         val latitude = location.latitude
         val longitude = location.longitude
-        //val msg = "New Latitude: " + latitude + "New Longitude: " + longitude
-        //Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show()
         val c = Coordinate(latitude, longitude)
-        var database = FirebaseDatabase.getInstance();
-        mAuth.uid?.let { database.getReference("riders").child(it).setValue(c) };
+        var database = FirebaseDatabase.getInstance()
+        mAuth.uid?.let { database.getReference("riders").child(it).setValue(c) }
     }
 
     private fun addDataSet() {
@@ -166,15 +162,10 @@ class ActiveTripsActivity : AppCompatActivity() {
         }
     }
 
-    /*override fun onLocationChanged(location: Location) {
-        var latitude = location!!.latitude
-        var longitude = location!!.longitude
-        val c = Coordinate(latitude, longitude)
-        Toast.makeText(applicationContext, "CIAO", Toast.LENGTH_SHORT).show()
-        Toast.makeText(applicationContext, c.toString(), Toast.LENGTH_SHORT).show()
-        var database = FirebaseDatabase.getInstance();
-        mAuth.uid?.let { database.getReference("riders").child(it).setValue(c) };
-    }*/
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
 }
 
 class Trips(val name: String, val address: String, val toPay: String, val order: String, val clientId: String)

@@ -46,8 +46,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var mGoogleSignInClient: GoogleSignInClient
-    lateinit var signin: SignInButton
-    val RC_SIGN_IN = 0
+    //lateinit var signin: SignInButton
+    private val RC_SIGN_IN = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,8 +63,7 @@ class LoginActivity : AppCompatActivity() {
             loginInUser()
         }
 
-        signin = findViewById(R.id.sign_in_button);
-        signin.setOnClickListener(View.OnClickListener { loginWithGoogle() })
+        //signin = findViewById(R.id.sign_in_button)
     }
 
     public override fun onStart() {
@@ -193,9 +192,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply();
-    }
-    private fun SignInButton.setOnClickListener(loginActivity: LoginActivity) {
-        loginWithGoogle()
     }
 
     private fun loginWithGoogle() {

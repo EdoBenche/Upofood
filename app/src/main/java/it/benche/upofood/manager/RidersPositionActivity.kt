@@ -3,7 +3,6 @@ package it.benche.upofood.manager
 import android.location.Geocoder
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -18,7 +17,7 @@ import it.benche.upofood.R
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_position_riders.*
 import java.io.IOException
-import java.util.ArrayList
+import java.util.*
 import kotlin.properties.Delegates
 
 @Suppress("DEPRECATION")
@@ -35,9 +34,6 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
 
     var latitudeRider  by Delegates.notNull<Double>()
     var longitudeRider  by Delegates.notNull<Double>()
-
-    var latitudeShop by Delegates.notNull<Double>()
-    var longitudeShop by Delegates.notNull<Double>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,8 +109,8 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
                 }
 
                 if (geocodeMatches != null) {
-                    var latitudeShop = geocodeMatches[0].latitude
-                    var longitudeShop = geocodeMatches[0].longitude
+                    val latitudeShop = geocodeMatches[0].latitude
+                    val longitudeShop = geocodeMatches[0].longitude
                     posShop = LatLng(latitudeShop, longitudeShop)
                 }
             }
@@ -125,14 +121,15 @@ class RidersPositionActivity: AppCompatActivity(), OnMapReadyCallback {
         mapFragment.onResume()
         mapFragment.getMapAsync(this)
 
-        goBack.onClick {
+        goBack.setOnClickListener {
+            finish()
             onBackPressed()
         }
-        refresh.onClick {
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+        refresh.setOnClickListener {
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
         }
     }
 

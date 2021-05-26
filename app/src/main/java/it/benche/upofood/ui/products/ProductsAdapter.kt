@@ -1,37 +1,25 @@
 package it.benche.upofood.ui.products
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import it.benche.upofood.ProductActivity
 import it.benche.upofood.R
-import it.benche.upofood.models.Card
-import it.benche.upofood.ui.orders.Order
-import it.benche.upofood.utils.CartAdapter
 import it.benche.upofood.utils.extensions.onClick
-import kotlinx.android.synthetic.main.activity_product_detail.*
-import kotlinx.android.synthetic.main.item_product.*
 import java.io.File
 import java.io.IOException
 import kotlin.io.*
-import kotlinx.android.synthetic.main.item_product.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {

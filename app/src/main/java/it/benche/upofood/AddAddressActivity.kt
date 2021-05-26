@@ -1,5 +1,6 @@
 package it.benche.upofood
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
@@ -105,6 +106,7 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onPositionChanged() {
         val address = simpleLocation?.address
         if (address != null) {
@@ -172,9 +174,9 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
     }
 
     private fun checkDistance() {
-        var check = false
-        var latClient: Double = 0.0
-        var lonClient: Double = 0.0
+        var check: Boolean
+        var latClient: Double
+        var lonClient: Double
         lateinit var posShop: com.google.android.gms.maps.model.LatLng
         lateinit var posClient: com.google.android.gms.maps.model.LatLng
         db.collection("shop")
@@ -196,8 +198,8 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
                 }
 
                 if (geocodeMatches != null) {
-                    var latitudeShop = geocodeMatches[0].latitude
-                    var longitudeShop = geocodeMatches[0].longitude
+                    val latitudeShop = geocodeMatches[0].latitude
+                    val longitudeShop = geocodeMatches[0].longitude
                     posShop = com.google.android.gms.maps.model.LatLng(latitudeShop, longitudeShop)
                 }
 

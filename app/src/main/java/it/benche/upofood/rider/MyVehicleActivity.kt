@@ -3,14 +3,12 @@ package it.benche.upofood.rider
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.R
-import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_my_vehicle.*
 
 
@@ -60,7 +58,7 @@ class MyVehicleActivity : AppCompatActivity() {
                 }
             }
 
-        radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
             // This will get the radiobutton that has changed in its check state
             val checkedRadioButton = group.findViewById<View>(checkedId) as RadioButton
             // This puts the value (true/false) into the variable
@@ -71,9 +69,9 @@ class MyVehicleActivity : AppCompatActivity() {
                     .document(mAuth.currentUser.uid)
                     .update("vehicle", checkedRadioButton.text)
             }
-        })
+        }
 
-        btnSaveVehicle.onClick {
+        btnSaveVehicle.setOnClickListener {
             db.collection("users")
                 .document(mAuth.currentUser.uid)
                 .update(mapOf(
@@ -81,10 +79,10 @@ class MyVehicleActivity : AppCompatActivity() {
                     "modello" to modello.text.toString()
                 ))
                 .addOnSuccessListener {
-                    Toast.makeText(context, "Le informazioni sono state aggiornate con successo!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Le informazioni sono state aggiornate con successo!", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
-                    Toast.makeText(context, "Ops... qualcosa è andato storto! Prego, riprovare", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Ops... qualcosa è andato storto! Prego, riprovare", Toast.LENGTH_SHORT).show()
                 }
         }
     }

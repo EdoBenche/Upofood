@@ -34,10 +34,6 @@ class Chat {
         return this.time
     }
 
-    fun setSender(sender: String) {
-        this.sender = sender
-    }
-
     fun setReceiver(receiver: String) {
         this.receiver = receiver
     }

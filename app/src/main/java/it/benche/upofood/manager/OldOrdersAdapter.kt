@@ -1,5 +1,6 @@
 package it.benche.upofood.manager
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,7 @@ class OldOrdersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val r2: TextView = itemView.ratingFast
         private val r3: TextView = itemView.ratingCourtesy
 
+        @SuppressLint("SetTextI18n")
         fun bind(oldOrderCard : Order) {
             nOrder.text = "Ordine #${oldOrderCard.number}"
             date.text = oldOrderCard.date

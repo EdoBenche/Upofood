@@ -1,5 +1,6 @@
 package it.benche.upofood.rider
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,7 @@ class MyOldTripsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val date: TextView = itemView.date
         private val status: TextView = itemView.isDelivered
 
+        @SuppressLint("SetTextI18n")
         fun bind(oldTripCard : OldTrips) {
             nOrder.text = "Ordine #${oldTripCard.number}"
             date.text = oldTripCard.date

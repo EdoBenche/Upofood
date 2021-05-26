@@ -1,7 +1,7 @@
 package it.benche.upofood
 
 import android.Manifest
-import android.R.attr.name
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.ContentValues
@@ -21,9 +21,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
-import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,8 +29,6 @@ import com.google.firebase.storage.StorageReference
 import it.benche.upofood.utils.extensions.checkIsEmpty
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_add_product.*
-import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.confirm_dialog.*
 import kotlinx.android.synthetic.main.layout_categories.*
 import kotlinx.android.synthetic.main.layout_categories.ivClose
 import kotlinx.android.synthetic.main.layout_select_media.*
@@ -41,11 +36,11 @@ import java.util.*
 import kotlin.properties.Delegates
 
 
+@Suppress("DEPRECATION")
 class AddProductActivity: AppCompatActivity() {
 
     lateinit var imageProduct: Uri
-    private val RESULT_LOAD_IMAGE = 100
-    private val PERMISSION_CODE = 1000;
+    private val PERMISSION_CODE = 1000
     private val IMAGE_CAPTURE_CODE = 1001
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
@@ -57,6 +52,7 @@ class AddProductActivity: AppCompatActivity() {
     private lateinit var dialog: Dialog
     private lateinit var dialog2: Dialog
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +60,9 @@ class AddProductActivity: AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
@@ -87,7 +85,7 @@ class AddProductActivity: AppCompatActivity() {
         val p = intent.getStringExtra("PRODUCT").toString()
         if(p != "null") {
             db.collection("products")
-                .document(p!!)
+                .document(p)
                 .get()
                 .addOnSuccessListener { document ->
                     titleText.text = "Modifica prodotto"
@@ -147,14 +145,14 @@ class AddProductActivity: AppCompatActivity() {
         )
 
         // Add a new document with a generated ID
-        val TAG: String = "AddProductActivity";
-        var uid: String? = mAuth.uid
+        val TAG = "AddProductActivity"
+        val uid: String? = mAuth.uid
         if (uid != null) {
             db.collection("products")
                     .document(edtProduct.text.toString())
                     .set(product)
                     .addOnSuccessListener { Log.d(TAG, "Prodotto aggiunto correttamente")}
-                    .addOnFailureListener(OnFailureListener { e -> Log.w(TAG, "Error adding document", e) })
+                    .addOnFailureListener({ e -> Log.w(TAG, "Error adding document", e) })
         }
         confirmed()
 
@@ -235,6 +233,7 @@ class AddProductActivity: AppCompatActivity() {
         }.addOnFailureListener { Toast.makeText(this, "Upload Failled.", Toast.LENGTH_SHORT).show() }
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun disableButtons() {
         btnAddProduct.isEnabled = true
@@ -266,6 +265,7 @@ class AddProductActivity: AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initCategoriesDialog() {
         dialog = BottomSheetDialog(this)
         dialog.setContentView(R.layout.layout_categories)
@@ -375,5 +375,10 @@ class AddProductActivity: AppCompatActivity() {
             }
             else -> return true
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

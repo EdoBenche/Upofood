@@ -3,11 +3,9 @@ package it.benche.upofood
 
 import android.graphics.Canvas
 import android.os.Bundle
-import android.os.Handler
 import android.os.Vibrator
 import android.util.Log
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -17,17 +15,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.utils.RequestsAdapter
-import it.benche.upofood.utils.RidersAdapter
 import it.benche.upofood.utils.TopSpacingItemDecoration
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.android.synthetic.main.activity_requests.*
 import kotlinx.android.synthetic.main.activity_select_rider.*
 import kotlinx.android.synthetic.main.activity_select_rider.recyView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
+@Suppress("DEPRECATION")
 class RequestsActivity: AppCompatActivity() {
     lateinit var db: FirebaseFirestore
     lateinit var mAuth: FirebaseAuth
@@ -109,10 +103,10 @@ class RequestsActivity: AppCompatActivity() {
 
         refreshReq.setOnRefreshListener {
             refreshReq.isRefreshing = false
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
         }
     }
 
@@ -159,7 +153,8 @@ class RequestsActivity: AppCompatActivity() {
                             .create()
                             .decorate()
 
-                    super.onChildDraw(c!!, recyclerView!!, viewHolder!!, dX, dY, actionState, isCurrentlyActive)
+                    super.onChildDraw(c, recyclerView,
+                        viewHolder, dX, dY, actionState, isCurrentlyActive)
                 }
             }
 
@@ -189,7 +184,8 @@ class RequestsActivity: AppCompatActivity() {
                             .create()
                             .decorate()
 
-                    super.onChildDraw(c!!, recyclerView!!, viewHolder!!, dX, dY, actionState, isCurrentlyActive)
+                    super.onChildDraw(c, recyclerView,
+                        viewHolder, dX, dY, actionState, isCurrentlyActive)
                 }
             }
 
@@ -198,10 +194,10 @@ class RequestsActivity: AppCompatActivity() {
                 .document(arrayList[pos].req)
                 .delete()
                 .addOnSuccessListener {
-                    finish();
-                    overridePendingTransition(0, 0);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
+                    finish()
+                    overridePendingTransition(0, 0)
+                    startActivity(intent)
+                    overridePendingTransition(0, 0)
                 }
                 .addOnFailureListener { e -> Log.w(
                         "ShoppingCartActivity",

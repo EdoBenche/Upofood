@@ -1,5 +1,6 @@
 package it.benche.upofood.rider
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -8,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.R
-import it.benche.upofood.manager.OldOrdersAdapter
-import it.benche.upofood.manager.Order
 import it.benche.upofood.utils.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_select_rider.*
 
@@ -20,13 +19,16 @@ class MyOldTripsActivity : AppCompatActivity() {
     private lateinit var arrayList: ArrayList<OldTrips>
     private lateinit var tripsAdapter: MyOldTripsAdapter
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_rider)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
         titleActivity.text = "Storico viaggi"
 
         mAuth = FirebaseAuth.getInstance()
@@ -70,10 +72,10 @@ class MyOldTripsActivity : AppCompatActivity() {
 
         refreshRid.setOnRefreshListener {
             refreshRid.isRefreshing = false
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
         }
     }
 
@@ -90,6 +92,11 @@ class MyOldTripsActivity : AppCompatActivity() {
             recyView.adapter = tripsAdapter
         }
 
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }
 

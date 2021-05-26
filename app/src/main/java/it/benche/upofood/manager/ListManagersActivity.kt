@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.R
-import it.benche.upofood.utils.RecapProductsAdapter
 import it.benche.upofood.utils.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_chat_with_manager.*
 import kotlinx.android.synthetic.main.activity_order.*
@@ -36,7 +35,7 @@ class ListManagersActivity: AppCompatActivity() {
         getData()
     }
 
-    fun getData() {
+    private fun getData() {
         db.collection("users")
                 .get()
                 .addOnCompleteListener { task ->

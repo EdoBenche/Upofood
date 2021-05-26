@@ -99,7 +99,7 @@ class DrawerActivity : AppCompatActivity() {
                             nameandsurname.setText(name + " "+surname)
                             role.setText(r_ole)
 
-                            Snackbar.make(drawerLayout, "Accesso eseguito come " + mAuth.currentUser.email, 5000).show()
+                            Snackbar.make(drawerLayout, "Accesso eseguito come " + mAuth.currentUser!!.email, 5000).show()
                         }
                     }
                 }

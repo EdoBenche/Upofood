@@ -1,5 +1,6 @@
 package it.benche.upofood.manager
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.RelativeLayout
@@ -7,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.R
 import it.benche.upofood.utils.TopSpacingItemDecoration
@@ -20,6 +20,7 @@ class OldOrdersActivity : AppCompatActivity() {
     private lateinit var arrayList: ArrayList<Order>
     private lateinit var ordersAdapter: OldOrdersAdapter
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_rider)
@@ -76,10 +77,10 @@ class OldOrdersActivity : AppCompatActivity() {
 
         refreshRid.setOnRefreshListener {
             refreshRid.isRefreshing = false
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
         }
     }
 

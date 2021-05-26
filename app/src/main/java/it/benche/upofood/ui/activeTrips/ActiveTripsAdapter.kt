@@ -1,6 +1,5 @@
 package it.benche.upofood.ui.activeTrips
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
@@ -12,9 +11,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -26,9 +22,6 @@ import it.benche.upofood.R
 import it.benche.upofood.message.MessageListActivity
 import it.benche.upofood.models.Chat
 import it.benche.upofood.utils.extensions.onClick
-import kotlinx.android.synthetic.main.activity_active_order.*
-import kotlinx.android.synthetic.main.fragment_list_trips.*
-import kotlinx.android.synthetic.main.fragment_list_trips.view.*
 import kotlinx.android.synthetic.main.item_active_trip.view.*
 import java.io.IOException
 import kotlin.properties.Delegates

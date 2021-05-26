@@ -30,14 +30,12 @@ import kotlinx.android.synthetic.main.activity_shopping_cart2.*
 import kotlinx.android.synthetic.main.activity_welcome.*
 import kotlinx.android.synthetic.main.confirm_order.*
 import kotlinx.coroutines.*
-import java.math.RoundingMode
-import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.round
 
 
+@Suppress("DEPRECATION")
 class ShoppingCartActivity: AppCompatActivity() {
 
     lateinit var db: FirebaseFirestore
@@ -52,58 +50,55 @@ class ShoppingCartActivity: AppCompatActivity() {
 
     private lateinit var productAdapter: CartAdapter
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping_cart2)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
 
-        var products: Array<Product>
         arrayList = ArrayList()
         uid = mAuth.uid.toString()
 
-        if (uid != null) {
-            db.collection("carts")
-                    .document(uid)
-                    .collection("cart")
-                    .get()
-                    .addOnCompleteListener { task ->
-                        if(task.isSuccessful) {
-                            for (document in task.result!!) {
-                                val product: String = document.getString("prodotto").toString()
-                                val qty: Int = document.getLong("qty")!!.toInt()
-                                val singlePrice: Double? = document.getDouble("price")
+        db.collection("carts")
+                .document(uid)
+                .collection("cart")
+                .get()
+                .addOnCompleteListener { task ->
+                    if(task.isSuccessful) {
+                        for (document in task.result!!) {
+                            val product: String = document.getString("prodotto").toString()
+                            val qty: Int = document.getLong("qty")!!.toInt()
+                            val singlePrice: Double? = document.getDouble("price")
 
-                                totalPrice += (qty * singlePrice!!)
-                                subtotalPrice = (100*totalPrice)/122
-                                taxPrice = totalPrice - subtotalPrice
+                            totalPrice += (qty * singlePrice!!)
+                            subtotalPrice = (100*totalPrice)/122
+                            taxPrice = totalPrice - subtotalPrice
 
-                                val p = Product(product, qty)
-                                arrayList.add(p)
-                            }
-                            subtotal.text = "${String.format("%.2f", subtotalPrice)}€"
-                            tax.text = "${String.format("%.2f", taxPrice)}€"
-                            total.text = "${String.format("%.2f", totalPrice)}€"
-                            if(task == null) {
-                                empty.visibility = TextView.VISIBLE
-                            }
-                            initRecyclerView()
-                            addDataSet()
-
-                        } else {
-                            Log.w(
-                                    "ShoppingCartActivity",
-                                    "Error getting documents.",
-                                    task.exception
-                            )
+                            val p = Product(product, qty)
+                            arrayList.add(p)
                         }
+                        subtotal.text = "${String.format("%.2f", subtotalPrice)}€"
+                        tax.text = "${String.format("%.2f", taxPrice)}€"
+                        total.text = "${String.format("%.2f", totalPrice)}€"
+                        initRecyclerView()
+                        addDataSet()
+
+                    } else {
+                        Log.w(
+                                "ShoppingCartActivity",
+                                "Error getting documents.",
+                                task.exception
+                        )
                     }
-        }
+                }
 
 
         btnSubmitOrder.onClick {
@@ -122,12 +117,6 @@ class ShoppingCartActivity: AppCompatActivity() {
         if(totalPrice == 0.0) {
             empty.visibility = TextView.VISIBLE
         }
-    }
-
-    fun roundOffDecimal(number: Double): Double? {
-        val df = DecimalFormat("#.##")
-        df.roundingMode = RoundingMode.CEILING
-        return df.format(number).toDouble()
     }
 
     private fun initRecyclerView() {
@@ -149,10 +138,10 @@ class ShoppingCartActivity: AppCompatActivity() {
             .document(arrayList[pos].prodotto)
             .delete()
             .addOnSuccessListener {
-                finish();
-                overridePendingTransition(0, 0);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
+                finish()
+                overridePendingTransition(0, 0)
+                startActivity(intent)
+                overridePendingTransition(0, 0)
             }
             .addOnFailureListener { e -> Log.w(
                     "ShoppingCartActivity",
@@ -187,13 +176,15 @@ class ShoppingCartActivity: AppCompatActivity() {
                         .create()
                         .decorate()
 
-                super.onChildDraw(c!!, recyclerView!!, viewHolder!!, dX, dY, actionState, isCurrentlyActive)
+                super.onChildDraw(c, recyclerView,
+                    viewHolder, dX, dY, actionState, isCurrentlyActive)
             }
         }
 
 
 
 
+    @SuppressLint("SimpleDateFormat")
     private fun submitOrder() {
         casual = Random().nextInt(999999).toString()
 
@@ -273,7 +264,7 @@ class ShoppingCartActivity: AppCompatActivity() {
     }
 
     private fun updateWarehouse() {
-        var qtNew = 0
+        var qtNew: Int
         for(product1 in arrayList) {
             db.collection("products")
                 .get().addOnSuccessListener { result ->

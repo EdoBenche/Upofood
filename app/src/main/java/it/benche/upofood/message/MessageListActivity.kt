@@ -1,7 +1,11 @@
+@file:Suppress("DEPRECATION")
+
 package it.benche.upofood.message
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -17,9 +21,7 @@ import com.google.firebase.iid.FirebaseInstanceId
 import it.benche.upofood.R
 import it.benche.upofood.models.Chat
 import it.benche.upofood.notifications.*
-import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_message_list.*
-import kotlinx.android.synthetic.main.activity_message_list.view.*
 import retrofit2.Call
 import retrofit2.Response
 import java.util.*
@@ -46,6 +48,7 @@ class MessageListActivity : AppCompatActivity() {
 
     private var mMessageRecycler: RecyclerView? = null
     //private var mMessageAdapter: MessageListAdapter? = null
+    @SuppressLint("CutPasteId")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +57,15 @@ class MessageListActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
         apiService = ApiClient.getClient!!.create(APIService::class.java)
 
         recyclerView = findViewById(R.id.recycler_gchat)
         recyclerView.setHasFixedSize(true)
-        var linearLayoutManager = LinearLayoutManager(applicationContext)
+        val linearLayoutManager = LinearLayoutManager(applicationContext)
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
@@ -74,10 +79,10 @@ class MessageListActivity : AppCompatActivity() {
             username.text = document.getString("nome").toString()
         }
 
-        val text_send: EditText = findViewById(R.id.text_send)!!
-        button_gchat_send.onClick {
+        val textSend: EditText = findViewById(R.id.text_send)!!
+        button_gchat_send.setOnClickListener {
             notify = true
-            val msg = text_send.text.toString()
+            val msg = textSend.text.toString()
             if(msg != "") {
                 val c = Calendar.getInstance()
                 val hour = c.get(Calendar.HOUR_OF_DAY)
@@ -85,9 +90,9 @@ class MessageListActivity : AppCompatActivity() {
                 val time = "$hour:$minutes"
                 sendMessage(snd, rcv, msg, time)
             } else {
-                Toast.makeText(context, "Non puoi mandare un messaggio vuoto!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Non puoi mandare un messaggio vuoto!", Toast.LENGTH_SHORT).show()
             }
-            text_send.setText("")
+            textSend.setText("")
         }
 
         val reference = FirebaseDatabase.getInstance().getReference("Chats")
@@ -114,27 +119,28 @@ class MessageListActivity : AppCompatActivity() {
 
         val hashMap: HashMap<String, String> = HashMap()
 
-        hashMap.put("sender", sender)
-        hashMap.put("receiver", receiver)
-        hashMap.put("message", message)
-        hashMap.put("time", time)
+        hashMap["sender"] = sender
+        hashMap["receiver"] = receiver
+        hashMap["message"] = message
+        hashMap["time"] = time
+
+        Log.d("CIAO", "***$reference")
 
         reference.child("Chats").push().setValue(hashMap)
 
-        var msg = message
-        var mAuth = FirebaseAuth.getInstance().currentUser.uid
-        sendNotifiaction(receiver, msg)
+        FirebaseAuth.getInstance().currentUser.uid
+        sendNotifiaction(receiver, message)
         notify = false
     }
 
     private fun sendNotifiaction(receiver: String, msg: String) {
-        var tokens: DatabaseReference = FirebaseDatabase.getInstance().getReference("Tokens")
-        var query: Query = tokens.orderByKey().equalTo(receiver)
+        val tokens: DatabaseReference = FirebaseDatabase.getInstance().getReference("Tokens")
+        val query: Query = tokens.orderByKey().equalTo(receiver)
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
-                    var token: Token = data.getValue(Token::class.java) as Token
-                    var data: Data = Data(
+                    val token: Token = data.getValue(Token::class.java) as Token
+                    val data = Data(
                         FirebaseAuth.getInstance().currentUser.uid,
                         R.mipmap.ic_launcher,
                         msg,
@@ -199,7 +205,12 @@ class MessageListActivity : AppCompatActivity() {
     private fun updateToken(token: String) {
         val mAuth = FirebaseAuth.getInstance().currentUser
         val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Tokens")
-        val token1: Token = Token(token)
+        val token1 = Token(token)
         reference.child(mAuth.uid).setValue(token1)
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

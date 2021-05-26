@@ -1,5 +1,6 @@
 package it.benche.upofood.client
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
@@ -8,11 +9,9 @@ import android.os.Handler
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
@@ -25,6 +24,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import it.benche.upofood.DrawerActivityClient
 import it.benche.upofood.ProfileActivity
 import it.benche.upofood.R
@@ -44,7 +44,6 @@ import kotlin.properties.Delegates
 class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
-    private lateinit var lottieAnimationView: LottieAnimationView
 
     private lateinit var mMap: GoogleMap
     private lateinit var db: FirebaseFirestore
@@ -81,9 +80,6 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {}
         })
 
-
-        /*lottieAnimationView = findViewById(R.id.lottie)
-        lottieAnimationView.animate()*/
         idRider = ArrayList()
         arrayList = ArrayList()
         val order = intent.getStringExtra("ORDER")
@@ -108,18 +104,18 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
         }, 1000)
 
 
-        refresh.onClick {
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+        refresh.setOnClickListener {
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
         }
 
-        profile.onClick {
-            startActivity(Intent(context, ProfileActivity::class.java))
+        profile.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
         }
 
-        home.onClick {
+        home.setOnClickListener {
             val ratingQuality = rating1.rating
             val ratingFast = rating2.rating
             val ratingCourtesy = rating3.rating
@@ -133,18 +129,19 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
                         "isDelivered" to "yes"
                     ))
                     .addOnSuccessListener {
-                        startActivity(Intent(context, DrawerActivityClient::class.java))
+                        finish()
+                        startActivity(Intent(this, DrawerActivityClient::class.java))
                     }
         }
 
-        homeBad.onClick {
+        homeBad.setOnClickListener {
             db.collection("orders")
                 .document(intent.getStringExtra("ORDER").toString())
                 .update(mapOf(
                     "isDelivered" to "yes"
                 ))
                 .addOnSuccessListener {
-                    startActivity(Intent(context, DrawerActivityClient::class.java))
+                    startActivity(Intent(this, DrawerActivityClient::class.java))
                 }
 
         }
@@ -153,7 +150,7 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
             val ord = intent.getStringExtra("ORDER")
             val client = mAuth.uid
             val rider = idRider[0]
-            val intent: Intent = Intent(context, MessageListActivity::class.java)
+            val intent = Intent(context, MessageListActivity::class.java)
             intent.putExtra("ORDER", ord)
             intent.putExtra("SENDER", client)
             intent.putExtra("RECEIVER", rider)
@@ -166,6 +163,7 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun applyInfoOrder() {
         val client = intent.getStringExtra("CLIENT")
         val order = intent.getStringExtra("ORDER")
@@ -250,9 +248,9 @@ class ActiveOrderActivity: AppCompatActivity(), OnMapReadyCallback {
                     .get()
                     .addOnCompleteListener { result ->
                         if(result.isSuccessful) {
-                            for(document in result.result!!) {
+                            for(document: QueryDocumentSnapshot in result.result!!) {
                                 if(document.getLong("numeroRider").toString() == rider.toString()) {
-                                    nameRider.text = "${document.getString("nome").toString()}"
+                                    nameRider.text = document.getString("nome").toString()
 
                                     if(document.getString("vehicle").toString() != "null") {
                                         infoVehicle.text = "Il rider arriverà in ${document.getString("vehicle").toString()}"

@@ -1,23 +1,13 @@
 package it.benche.upofood.manager
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.widget.NestedScrollView
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import it.benche.upofood.ProfileActivity
 import it.benche.upofood.R
 import it.benche.upofood.utils.extensions.onClick
-import kotlinx.android.synthetic.main.activity_add_address.*
 import kotlinx.android.synthetic.main.activity_my_shop.*
-import kotlinx.android.synthetic.main.activity_my_shop.edtAddress
-import kotlinx.android.synthetic.main.activity_my_shop.edtCity
-import kotlinx.android.synthetic.main.activity_my_shop.edtPinCode
-import kotlinx.android.synthetic.main.activity_my_shop.edtProvincia
 
 class MyShopActivity: AppCompatActivity() {
 

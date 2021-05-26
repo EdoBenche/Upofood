@@ -6,7 +6,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.client.MyOldOrdersActivity
@@ -16,9 +15,7 @@ import it.benche.upofood.manager.OldOrdersActivity
 import it.benche.upofood.manager.RidersPositionActivity
 import it.benche.upofood.rider.MyOldTripsActivity
 import it.benche.upofood.rider.MyVehicleActivity
-import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.nav_header_main.*
 
 class ProfileActivity: AppCompatActivity() {
 
@@ -31,12 +28,14 @@ class ProfileActivity: AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        var uid = mAuth.uid
+        val uid = mAuth.uid
         db.collection("users")
                 .get()
                 .addOnSuccessListener { result ->
@@ -65,7 +64,7 @@ class ProfileActivity: AppCompatActivity() {
                     }
                 }
 
-        signOutButton.onClick {
+        signOutButton.setOnClickListener {
             db.collection("users")
                     .get()
                     .addOnSuccessListener { result ->
@@ -77,59 +76,59 @@ class ProfileActivity: AppCompatActivity() {
                             }
                         }
                     }
-            FirebaseAuth.getInstance().signOut();
-            startActivity(Intent(context,LoginActivity::class.java))
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this,LoginActivity::class.java))
         }
 
-        deleteCache.onClick {
-            context.cacheDir.deleteRecursively()
-            Toast.makeText(context, "La cache è stata pulita con successo!", Toast.LENGTH_SHORT).show()
+        deleteCache.setOnClickListener {
+            cacheDir.deleteRecursively()
+            Toast.makeText(this, "La cache è stata pulita con successo!", Toast.LENGTH_SHORT).show()
         }
 
-        modifyProfile.onClick {
+        modifyProfile.setOnClickListener {
             modifyProfile()
         }
 
         //Bottoni gestore
-        manageShop.onClick {
-            startActivity(Intent(context, MyShopActivity::class.java))
+        manageShop.setOnClickListener {
+            startActivity(Intent(this, MyShopActivity::class.java))
 
         }
 
-        tvAddGestore.onClick {
-            startActivity(Intent(context, AddManagerActivity::class.java))
+        tvAddGestore.setOnClickListener {
+            startActivity(Intent(this, AddManagerActivity::class.java))
         }
 
-        storicoOrdiniGestore.onClick {
-            startActivity(Intent(context, OldOrdersActivity::class.java))
+        storicoOrdiniGestore.setOnClickListener {
+            startActivity(Intent(this, OldOrdersActivity::class.java))
         }
 
-        myRiders.onClick {
-            startActivity(Intent(context, RidersPositionActivity::class.java))
+        myRiders.setOnClickListener {
+            startActivity(Intent(this, RidersPositionActivity::class.java))
         }
 
         //Bottoni cliente
-        tvManageAddress.onClick {
-            startActivity(Intent(context, AddAddressActivity::class.java))
+        tvManageAddress.setOnClickListener {
+            startActivity(Intent(this, AddAddressActivity::class.java))
         }
 
-        tvMyOrders.onClick {
-            startActivity(Intent(context, MyOldOrdersActivity::class.java))
+        tvMyOrders.setOnClickListener {
+            startActivity(Intent(this, MyOldOrdersActivity::class.java))
 
         }
 
         //Bottoni rider
-        storicoViaggi.onClick {
-            startActivity(Intent(context, MyOldTripsActivity::class.java))
+        storicoViaggi.setOnClickListener {
+            startActivity(Intent(this, MyOldTripsActivity::class.java))
         }
 
-        myTransport.onClick {
-            startActivity(Intent(context, MyVehicleActivity::class.java))
+        myTransport.setOnClickListener {
+            startActivity(Intent(this, MyVehicleActivity::class.java))
         }
     }
 
     private fun modifyProfile() {
-        var intent = Intent(this, ModifyProfileActivity::class.java)
+        val intent = Intent(this, ModifyProfileActivity::class.java)
         startActivity(intent)
     }
 }

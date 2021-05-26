@@ -68,17 +68,17 @@ class AddProductActivity: AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         addImage()
-        btnAddImage.onClick {
+        btnAddImage.setOnClickListener {
             dialog2.show()
         }
 
-        btnAddProduct.onClick {
+        btnAddProduct.setOnClickListener {
             if(checkInput()) {
                 addProductInCloud()
             }
         }
         initCategoriesDialog()
-        edtSpinnerCategories.onClick {
+        edtSpinnerCategories.setOnClickListener {
             dialog.show()
         }
 

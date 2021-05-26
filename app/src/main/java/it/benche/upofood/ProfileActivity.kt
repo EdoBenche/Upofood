@@ -131,4 +131,9 @@ class ProfileActivity: AppCompatActivity() {
         val intent = Intent(this, ModifyProfileActivity::class.java)
         startActivity(intent)
     }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
 }

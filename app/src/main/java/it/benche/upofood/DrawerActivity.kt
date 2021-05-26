@@ -1,6 +1,6 @@
 package it.benche.upofood
 
-import android.app.Notification.VISIBILITY_PUBLIC
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -11,10 +11,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -28,16 +24,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.view.GravityCompat
-import androidx.fragment.app.FragmentManager
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
-import it.benche.upofood.ui.categories.CategoriesFragment
 import it.benche.upofood.ui.orders.OrdersFragment
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_login.*
@@ -50,8 +38,8 @@ class DrawerActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawer)
@@ -78,14 +66,13 @@ class DrawerActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        var uid = mAuth.uid
+        val uid = mAuth.uid
 
         //var nameandsurname: TextView = findViewById(R.id.nameandsurname)
         //var role: TextView = findViewById(R.id.role)
-        var TAG = "DrawerActivity";
 
         db.collection("users")
                 .get()
@@ -94,12 +81,12 @@ class DrawerActivity : AppCompatActivity() {
                         if(document.id == uid.toString()) {
                             val name = document.getString("nome")
                             val surname = document.getString("cognome")
-                            var r_ole = document.getString("account")
+                            val r_ole = document.getString("account")
 
-                            nameandsurname.setText(name + " "+surname)
-                            role.setText(r_ole)
+                            nameandsurname.text = "$name $surname"
+                            role.text = r_ole
 
-                            Snackbar.make(drawerLayout, "Accesso eseguito come " + mAuth.currentUser!!.email, 5000).show()
+                            Snackbar.make(drawerLayout, "Accesso eseguito come " + mAuth.currentUser!!.email, Snackbar.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -127,16 +114,6 @@ class DrawerActivity : AppCompatActivity() {
 
     }
 
-    private fun signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this
-                ) { startActivity(Intent(this, LoginActivity::class.java)) }
-    }
-
-    private fun FloatingActionButton.setImageDrawable(icPlus: Int) {
-
-    }
-
     private fun checkNewOrders() {
         var isSomethingNew = false
 
@@ -154,7 +131,7 @@ class DrawerActivity : AppCompatActivity() {
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         }
                         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-                        var builder = NotificationCompat.Builder(this, "blabla")
+                        val builder = NotificationCompat.Builder(this, "blabla")
                                 .setSmallIcon(R.drawable.ic_baseline_notification_add_24)
                                 .setContentTitle("Nuovo ordine!")
                                 .setContentText("Hai dei nuovi ordini in sospeso, vai su Ordini attivi")

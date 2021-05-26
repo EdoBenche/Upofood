@@ -39,7 +39,9 @@ class ProductActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
 
         dialog = Dialog(this)
@@ -92,19 +94,19 @@ class ProductActivity : AppCompatActivity() {
         pickerQty.value = 1
 
 
-        btnAddCart.onClick {
+        btnAddCart.setOnClickListener {
             addOnCart()
         }
-        btnBuyNow.onClick {
-            startActivity(Intent(context, ShoppingCartActivity::class.java))
+        btnBuyNow.setOnClickListener {
+            startActivity(Intent(this, ShoppingCartActivity::class.java))
         }
-        btnModify.onClick {
+        btnModify.setOnClickListener {
             val p = intent.getStringExtra("NAME")
-            val intent = Intent(context, AddProductActivity::class.java)
+            val intent = Intent(this, AddProductActivity::class.java)
             intent.putExtra("PRODUCT", p)
             startActivity(intent)
         }
-        btnDelete.onClick {
+        btnDelete.setOnClickListener {
             askToDelete()
         }
     }
@@ -155,5 +157,10 @@ class ProductActivity : AppCompatActivity() {
                     }
                     .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

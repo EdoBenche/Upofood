@@ -1,14 +1,12 @@
 package it.benche.upofood.utils
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -17,12 +15,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import it.benche.upofood.R
 import it.benche.upofood.Request
-import it.benche.upofood.RequestsActivity
 import it.benche.upofood.client.ActiveOrderActivity
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.item_request.view.*
 import java.io.IOException
-import kotlin.coroutines.coroutineContext
 import kotlin.properties.Delegates
 
 
@@ -64,6 +60,7 @@ class RequestsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var latitude by Delegates.notNull<Double>()
         var longitude by Delegates.notNull<Double>()
 
+        @SuppressLint("SetTextI18n")
         fun bind(requestCard: Request) {
             nameofclient = "${requestCard.name} ${requestCard.surname}"
             clientName.text = "${requestCard.name} ${requestCard.surname}"
@@ -101,7 +98,7 @@ class RequestsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val lat1 = latitude
             val lng1 = longitude
             val bord = LatLng(lat1, lng1)
-            mMap.addMarker(MarkerOptions().position(bord).title("Cliente").snippet("${nameofclient}"))
+            mMap.addMarker(MarkerOptions().position(bord).title("Cliente").snippet(nameofclient))
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bord, 13.0f))
         }
     }

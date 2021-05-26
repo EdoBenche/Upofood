@@ -30,7 +30,9 @@ class RidersActivity: AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
         db = FirebaseFirestore.getInstance()
         arrayList = ArrayList()
@@ -84,6 +86,11 @@ class RidersActivity: AppCompatActivity() {
             recyView.adapter = ridersAdapter
         }
 
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }
 

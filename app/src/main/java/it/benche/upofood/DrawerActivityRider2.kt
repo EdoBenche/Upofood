@@ -1,12 +1,11 @@
 package it.benche.upofood
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.CompoundButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.manager.ListManagersActivity
 import kotlinx.android.synthetic.main.activity_drawer_rider2.*
@@ -16,6 +15,7 @@ class DrawerActivityRider2 : AppCompatActivity() {
     lateinit var db: FirebaseFirestore
     lateinit var mAuth: FirebaseAuth
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawer_rider2)
@@ -66,10 +66,10 @@ class DrawerActivityRider2 : AppCompatActivity() {
 
         refreshRider.setOnRefreshListener {
             refreshRider.isRefreshing = false
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
 
         }
 

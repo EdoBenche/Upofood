@@ -1,49 +1,41 @@
 package it.benche.upofood
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
 import it.benche.upofood.client.ActiveOrderActivity
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class DrawerActivityClient : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
         checkActiveOrder()
         setContentView(R.layout.activity_drawer_client)
@@ -69,11 +61,10 @@ class DrawerActivityClient : AppCompatActivity() {
 
 
 
-        var uid = mAuth.uid
+        val uid = mAuth.uid
 
         //var nameandsurname: TextView = findViewById(R.id.nameandsurname)
         //var role: TextView = findViewById(R.id.role)
-        var TAG = "DrawerActivity";
 
         db.collection("users")
                 .get()
@@ -82,12 +73,12 @@ class DrawerActivityClient : AppCompatActivity() {
                         if(document.id == uid.toString()) {
                             val name = document.getString("nome")
                             val surname = document.getString("cognome")
-                            var r_ole = document.getString("account")
+                            val r_ole = document.getString("account")
 
-                            nameandsurname.setText(name + " "+surname)
-                            role.setText(r_ole)
+                            nameandsurname.text = "$name $surname"
+                            role.text = r_ole
 
-                            Snackbar.make(drawerLayout, "Accesso eseguito come " + mAuth.currentUser.email, 5000).show()
+                            Snackbar.make(drawerLayout, "Accesso eseguito come " + mAuth.currentUser.email, Snackbar.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -111,12 +102,6 @@ class DrawerActivityClient : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-    }
-
-    private fun signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this
-                ) { startActivity(Intent(this, LoginActivity::class.java)) }
     }
 
     private fun checkActiveOrder() {

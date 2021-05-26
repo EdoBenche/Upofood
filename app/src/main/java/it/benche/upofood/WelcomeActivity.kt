@@ -1,17 +1,15 @@
 package it.benche.upofood
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.github.appintro.*
-import java.util.jar.Manifest
+import com.github.appintro.AppIntro
+import com.github.appintro.AppIntroCustomLayoutFragment
+import com.github.appintro.AppIntroFragment
+import com.github.appintro.AppIntroPageTransformerType
 
 class WelcomeActivity : AppIntro() {
 

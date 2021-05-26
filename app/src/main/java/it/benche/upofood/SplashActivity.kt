@@ -6,7 +6,6 @@ import android.os.Handler
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
-import java.util.*
 
 @Suppress("DEPRECATION")
 class SplashActivity : AppCompatActivity() {
@@ -30,10 +29,6 @@ class SplashActivity : AppCompatActivity() {
 
 
     }
-}
-
-private fun Timer.schedule(i: Int) {
-
 }
 
 

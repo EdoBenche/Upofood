@@ -1,43 +1,28 @@
 package it.benche.upofood
 
 import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.view.ContextThemeWrapper
 import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
-import androidx.core.widget.TextViewCompat
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.message.MessageListActivity
-import it.benche.upofood.utils.CartAdapter
 import it.benche.upofood.utils.RecapProductsAdapter
 import it.benche.upofood.utils.TopSpacingItemDecoration
-import it.benche.upofood.utils.extensions.changeBackgroundTint
-import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_active_order.*
-
 import kotlinx.android.synthetic.main.activity_order2.*
 import kotlinx.android.synthetic.main.activity_shopping_cart.*
 import kotlinx.android.synthetic.main.fragment_list_trips.*
-import kotlinx.android.synthetic.main.fragment_list_trips.refresh
 
+@Suppress("DEPRECATION", "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class OrderActivity: AppCompatActivity() {
 
     lateinit var db: FirebaseFirestore
@@ -49,7 +34,7 @@ class OrderActivity: AppCompatActivity() {
     private lateinit var productAdapter: RecapProductsAdapter
 
     @RequiresApi(Build.VERSION_CODES.M)
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint("ResourceAsColor", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order2)
@@ -85,7 +70,6 @@ class OrderActivity: AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        var products: Array<Product>
         arrayList = ArrayList()
         rider = ArrayList()
 
@@ -141,53 +125,53 @@ class OrderActivity: AppCompatActivity() {
                     }
                 }
 
-        btnAccept.onClick {
+        btnAccept.setOnClickListener {
             db.collection("orders")
                     .document("$nOrd")
                     .update(mapOf("deliveryState" to "Preso in carico"))
                     .addOnSuccessListener {
-                        finish();
-                        overridePendingTransition(0, 0);
-                        startActivity(intent);
-                        overridePendingTransition(0, 0);
+                        finish()
+                        overridePendingTransition(0, 0)
+                        startActivity(intent)
+                        overridePendingTransition(0, 0)
                     }
                     .addOnFailureListener {  }
         }
 
-        btnPrep.onClick {
+        btnPrep.setOnClickListener {
             db.collection("orders")
                     .document("$nOrd")
                     .update(mapOf("deliveryState" to "In preparazione"))
                     .addOnSuccessListener {
-                        finish();
-                        overridePendingTransition(0, 0);
-                        startActivity(intent);
-                        overridePendingTransition(0, 0);
+                        finish()
+                        overridePendingTransition(0, 0)
+                        startActivity(intent)
+                        overridePendingTransition(0, 0)
                     }
                     .addOnFailureListener {  }
         }
 
-        btnDelivered.onClick {
+        btnDelivered.setOnClickListener {
             db.collection("orders")
                     .document("$nOrd")
                     .update(mapOf("deliveryState" to "Consegnato al rider"))
                     .addOnSuccessListener {
-                        finish();
-                        overridePendingTransition(0, 0);
-                        startActivity(intent);
-                        overridePendingTransition(0, 0);
+                        finish()
+                        overridePendingTransition(0, 0)
+                        startActivity(intent)
+                        overridePendingTransition(0, 0)
                     }
                     .addOnFailureListener {  }
         }
 
-        btnSelectRider.onClick {
-            val intent: Intent = Intent(context, RidersActivity::class.java)
+        btnSelectRider.setOnClickListener {
+            val intent = Intent(this, RidersActivity::class.java)
             intent.putExtra("ORDINE", nOrd)
             startActivity(intent)
         }
 
-        toChat.onClick {
-            val intent = Intent(context, MessageListActivity::class.java)
+        toChat.setOnClickListener {
+            val intent = Intent(this, MessageListActivity::class.java)
             intent.putExtra("SENDER", mAuth.currentUser.uid)
             intent.putExtra("RECEIVER", rider[0])
             startActivity(intent)
@@ -195,10 +179,10 @@ class OrderActivity: AppCompatActivity() {
 
         refreshOrd.setOnRefreshListener {
             refreshOrd.isRefreshing = false
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
 
         }
     }
@@ -218,7 +202,7 @@ class OrderActivity: AppCompatActivity() {
 
     }
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint("ResourceAsColor", "SetTextI18n")
     private fun checkRiderStatus() {
         db = FirebaseFirestore.getInstance()
         //Controlla che la richiesta sia in attesa
@@ -264,4 +248,3 @@ class OrderActivity: AppCompatActivity() {
 
 }
 
-class Prodotto(val name: String, val qty: Int)

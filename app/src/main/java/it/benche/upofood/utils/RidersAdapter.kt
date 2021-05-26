@@ -1,18 +1,18 @@
 package it.benche.upofood.utils
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
-import it.benche.upofood.*
+import it.benche.upofood.R
+import it.benche.upofood.Rider
+import it.benche.upofood.RidersActivity
 import it.benche.upofood.utils.extensions.onClick
-import kotlinx.android.synthetic.main.item_product_cart.view.*
 import kotlinx.android.synthetic.main.item_rider.view.*
 
 class RidersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -48,6 +48,7 @@ class RidersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val riderNumber: TextView = itemView.numberRider
         private val card: LinearLayout = itemView.card
 
+        @SuppressLint("SetTextI18n")
         fun bind(riderCard : Rider) {
             riderName.text = "${riderCard.nome} ${riderCard.cognome}"
             riderNumber.text = riderCard.numeroRider

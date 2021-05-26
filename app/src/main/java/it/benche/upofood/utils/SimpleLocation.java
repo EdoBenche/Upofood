@@ -2,7 +2,6 @@ package it.benche.upofood.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -11,7 +10,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.Settings;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Locale;
@@ -34,7 +34,7 @@ public class SimpleLocation {
     private final boolean mPassive;
     private final long mInterval;
     private final boolean mRequireNewLocation;
-    private Geocoder geocoder;
+    private final Geocoder geocoder;
     private int mBlurRadius;
     private LocationListener mLocationListener;
     private Location mPosition;
@@ -81,16 +81,8 @@ public class SimpleLocation {
         return mRandom.nextInt((radius + 1) * 2) - radius;
     }
 
-    public static void openSettings(final Context context) {
-        context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-    }
-
     public static double latitudeToKilometer(double latitude) {
         return latitude * LATITUDE_TO_KILOMETER;
-    }
-
-    public static double kilometerToLatitude(double kilometer) {
-        return kilometer / latitudeToKilometer(1.0f);
     }
 
     public static double latitudeToMeter(double latitude) {
@@ -103,10 +95,6 @@ public class SimpleLocation {
 
     public static double longitudeToKilometer(double longitude, double latitude) {
         return longitude * LONGITUDE_TO_KILOMETER_AT_ZERO_LATITUDE * Math.cos(Math.toRadians(latitude));
-    }
-
-    public static double kilometerToLongitude(double kilometer, double latitude) {
-        return kilometer / longitudeToKilometer(1.0f, latitude);
     }
 
     public static double longitudeToMeter(double longitude, double latitude) {
@@ -234,10 +222,6 @@ public class SimpleLocation {
         return mPosition;
     }
 
-    public void setBlurRadius(final int blurRadius) {
-        mBlurRadius = blurRadius;
-    }
-
     private LocationListener createLocationListener() {
         return new LocationListener() {
 
@@ -328,9 +312,8 @@ public class SimpleLocation {
         try {
             List<Address> addresses = geocoder.getFromLocation(getLatitude(), getLongitude(), 1);
             if (addresses != null) {
-                Address returnedAddress = addresses.get(0);
                 //if (returnedAddress.getAddressLine(0) != null) {
-                return returnedAddress;
+                return addresses.get(0);
                 //}
             }
             return null;
@@ -339,15 +322,15 @@ public class SimpleLocation {
         }
     }
 
-    public static interface Listener {
+    public interface Listener {
 
-        public void onPositionChanged();
+        void onPositionChanged();
 
-        public void onStatusChanged(String provider, int status, Bundle extras);
+        void onStatusChanged(String provider, int status, Bundle extras);
 
-        public void onProviderEnabled(String provider);
+        void onProviderEnabled(String provider);
 
-        public void onProviderDisabled(String provider);
+        void onProviderDisabled(String provider);
 
     }
 
@@ -379,6 +362,7 @@ public class SimpleLocation {
             longitude = in.readDouble();
         }
 
+        @NotNull
         @Override
         public String toString() {
             return "(" + latitude + ", " + longitude + ")";

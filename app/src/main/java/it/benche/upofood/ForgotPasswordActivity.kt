@@ -11,13 +11,14 @@ import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_forgot_password.*
 private lateinit var mAuth: FirebaseAuth
+@Suppress("DEPRECATION")
 class ForgotPasswordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance()
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbar.setNavigationOnClickListener {
@@ -26,9 +27,9 @@ class ForgotPasswordActivity : AppCompatActivity() {
         setStatusBarWhite(this@ForgotPasswordActivity)
 
         button_send.setOnClickListener {
-            var emailAddress = et_email.text.toString();
+            val emailAddress = et_email.text.toString();
 
-            mAuth!!.sendPasswordResetEmail(emailAddress)
+            mAuth.sendPasswordResetEmail(emailAddress)
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful) {
                         Toast.makeText(this, "Ti abbiamo inviato un link alla mail $emailAddress", Toast.LENGTH_SHORT).show()

@@ -1,20 +1,14 @@
 package it.benche.upofood.utils
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.R
-import it.benche.upofood.Rider
-import it.benche.upofood.RidersActivity
 import it.benche.upofood.client.Order
-import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.item_old_order.view.*
-import kotlinx.android.synthetic.main.item_rider.view.*
 
 class OldOrdersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -49,6 +43,7 @@ class OldOrdersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val date: TextView = itemView.date
         private val total: TextView = itemView.totalPrice
 
+        @SuppressLint("SetTextI18n")
         fun bind(oldOrderCard : Order) {
             nOrder.text = "Ordine #${oldOrderCard.number}"
             date.text = oldOrderCard.date

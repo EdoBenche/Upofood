@@ -1,11 +1,9 @@
 package it.benche.upofood.utils
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import it.benche.upofood.Product
 import it.benche.upofood.R
@@ -44,9 +42,10 @@ class RecapProductsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val productName = itemView.product
         val productQty = itemView.qty
 
+        @SuppressLint("SetTextI18n")
         fun bind(productCard : Product) {
             productName.text = productCard.prodotto
-            productQty.text = "Quantità: ${productCard.qty.toString()}"
+            productQty.text = "Quantità: ${productCard.qty}"
         }
     }
 }

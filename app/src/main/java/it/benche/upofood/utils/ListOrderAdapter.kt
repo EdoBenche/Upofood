@@ -1,20 +1,16 @@
 package it.benche.upofood.utils
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
-import androidx.appcompat.view.menu.ActionMenuItemView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import it.benche.upofood.R
 import it.benche.upofood.client.Product
 import kotlinx.android.synthetic.main.item_product_in_order.view.*
-import kotlin.coroutines.coroutineContext
 
 class ListOrderAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -49,6 +45,7 @@ class ListOrderAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val qty = itemView.tvQty
         val card = itemView.card
 
+        @SuppressLint("SetTextI18n")
         fun bind(productCard: Product) {
             productName.text = productCard.name
             qty.text = "Quantità: ${productCard.qty}"

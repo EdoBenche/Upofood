@@ -111,6 +111,11 @@ class ShoppingCartActivity: AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
+
     private fun addDataSet() {
         productAdapter.submitList(arrayList)
 

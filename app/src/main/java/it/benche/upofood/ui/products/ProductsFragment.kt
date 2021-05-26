@@ -53,10 +53,10 @@ class ProductsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun onRefresh() {
         refresh.isRefreshing = false
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            fragmentManager?.beginTransaction()?.detach(this)?.commitNow();
-            fragmentManager?.beginTransaction()?.attach(this)?.commitNow();
+            fragmentManager?.beginTransaction()?.detach(this)?.commitNow()
+            fragmentManager?.beginTransaction()?.attach(this)?.commitNow()
         } else {
-            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit();
+            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
         }
 
     }

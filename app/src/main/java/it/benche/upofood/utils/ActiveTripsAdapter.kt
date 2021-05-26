@@ -1,5 +1,6 @@
 package it.benche.upofood.utils
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
@@ -7,7 +8,6 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -17,14 +17,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import it.benche.upofood.Product
 import it.benche.upofood.R
 import it.benche.upofood.Trips
 import it.benche.upofood.message.MessageListActivity
 import it.benche.upofood.models.Chat
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.item_active_trip.view.*
-import kotlinx.android.synthetic.main.item_product_cart.view.*
 import java.io.IOException
 import kotlin.properties.Delegates
 
@@ -66,6 +64,7 @@ class ActiveTripsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val road = itemView.road
         val toChat = itemView.toChat
 
+        @SuppressLint("SetTextI18n")
         fun bind(tripCard : Trips) {
             val db = FirebaseFirestore.getInstance()
             client.text = tripCard.name

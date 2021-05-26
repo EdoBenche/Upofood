@@ -33,7 +33,6 @@ class ActiveTripsActivity : AppCompatActivity() {
     private lateinit var order: ArrayList<String>
 
     private var locationManager: LocationManager? = null
-    private var provider: String? = null
     var mContext: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -144,7 +143,7 @@ class ActiveTripsActivity : AppCompatActivity() {
         val latitude = location.latitude
         val longitude = location.longitude
         val c = Coordinate(latitude, longitude)
-        var database = FirebaseDatabase.getInstance()
+        val database = FirebaseDatabase.getInstance()
         mAuth.uid?.let { database.getReference("riders").child(it).setValue(c) }
     }
 

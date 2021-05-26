@@ -1,18 +1,14 @@
 package it.benche.upofood
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.Spinner
 import android.widget.Toast
@@ -20,13 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Task
-import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
@@ -36,16 +27,16 @@ import kotlinx.android.synthetic.main.activity_login.loadingPanel
 import kotlinx.android.synthetic.main.activity_requests.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.nav_header_main.*
-import org.w3c.dom.Text
 
 
+@Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
 
 
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
+
     //lateinit var signin: SignInButton
     private val RC_SIGN_IN = 0
 
@@ -56,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
 
         checkFirstRun()
 
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
         button_signin.setOnClickListener{
@@ -72,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = mAuth.currentUser
         if(currentUser != null) {
-            var uid = mAuth.uid
+            val uid = mAuth.uid
 
             db.collection("users")
                     .get()
@@ -138,8 +129,8 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        val user = mAuth.currentUser
-                        var uid = mAuth.uid
+                        mAuth.currentUser
+                        val uid = mAuth.uid
 
                         db.collection("users")
                                 .get()
@@ -175,8 +166,8 @@ class LoginActivity : AppCompatActivity() {
 
     //Controlla se l'app viene aperta per la prima volta o no
     private fun checkFirstRun() {
-        val PREFS_NAME: String = "Upofood"
-        var PREF_VERSION_CODE_KEY = "version_code"
+        val PREFS_NAME = "Upofood"
+        val PREF_VERSION_CODE_KEY = "version_code"
         val DOESNT_EXIST = -1
 
         val currentVersionCode = BuildConfig.VERSION_CODE
@@ -191,24 +182,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, WelcomeActivity::class.java))
         }
 
-        prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply();
-    }
-
-    private fun loginWithGoogle() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build()
-
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-        val signInIntent: Intent = mGoogleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-        if(account != null) {
-            startActivity(Intent(this, DrawerActivity::class.java))
-        }
-
-
+        prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -225,7 +199,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
-            val account = completedTask.getResult(ApiException::class.java)
+            completedTask.getResult(ApiException::class.java)
 
             // Signed in successfully, show authenticated UI.
             addDataInCloud()
@@ -239,14 +213,10 @@ class LoginActivity : AppCompatActivity() {
         val acct = GoogleSignIn.getLastSignedInAccount(this)
         if (acct != null) {
             val personName = acct.displayName
-            val personGivenName = acct.givenName
             val personFamilyName = acct.familyName
-            val personEmail = acct.email
-            val personId = acct.id
-            val personPhoto: Uri? = acct.photoUrl
 
             // Create a new user with a first and last name
-            var mSpinner: Spinner = findViewById(R.id.spinner)
+            val mSpinner: Spinner = findViewById(R.id.spinner)
 
             val user = hashMapOf(
                 "nome" to personName,
@@ -260,14 +230,14 @@ class LoginActivity : AppCompatActivity() {
 // Add a new document with a generated ID
 
 // Add a new document with a generated ID
-            val TAG: String = "SignupActivity";
-            var uid = mAuth.uid
+            val TAG = "SignupActivity"
+            val uid = mAuth.uid
             if (uid != null) {
                 db.collection("users")
                     .document(uid)
                     .set(user)
                     .addOnSuccessListener { Log.d(TAG, "Utente aggiunto correttamente")}
-                    .addOnFailureListener(OnFailureListener { e ->
+                    .addOnFailureListener({ e ->
                         Log.w(
                             TAG,
                             "Error adding document",

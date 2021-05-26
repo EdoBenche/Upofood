@@ -1,35 +1,26 @@
 package it.benche.upofood
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.RelativeLayout
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.get
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup.view.*
 import kotlinx.android.synthetic.main.layout_type_user.*
 
 
+@Suppress("DEPRECATION")
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
@@ -43,10 +34,12 @@ class SignupActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
         setStatusBarWhite(this@SignupActivity)
 
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
         button_signin.setOnClickListener{
@@ -54,7 +47,7 @@ class SignupActivity : AppCompatActivity() {
         }
 
         initUsersDialog()
-        spinner.onClick {
+        spinner.setOnClickListener {
             dialog.show()
         }
 
@@ -81,27 +74,26 @@ class SignupActivity : AppCompatActivity() {
 
     private fun signInUser() {
         mAuth.createUserWithEmailAndPassword(et_email.text.toString(), et_password.text.toString())
-            .addOnCompleteListener(this,
-                OnCompleteListener<AuthResult?> { task ->
-                    if (task.isSuccessful) {
-                        var mSpinner: TextView = findViewById(R.id.spinner)
-                        if(mSpinner.text == "Cliente") {
-                            addClientInCloud()
-                            startActivity(Intent(this, AddAddressActivity::class.java))
-                        }
-                        else if(mSpinner.text == "Rider") {
-                            addRiderInCloud()
-                            startActivity(Intent(this, DrawerActivityRider2::class.java))
-                        }
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Toast.makeText(
-                            this, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+            .addOnCompleteListener(this
+            ) { task ->
+                if (task.isSuccessful) {
+                    val mSpinner: TextView = findViewById(R.id.spinner)
+                    if (mSpinner.text == "Cliente") {
+                        addClientInCloud()
+                        startActivity(Intent(this, AddAddressActivity::class.java))
+                    } else if (mSpinner.text == "Rider") {
+                        addRiderInCloud()
+                        startActivity(Intent(this, DrawerActivityRider2::class.java))
                     }
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(
+                        this, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
-                })
+            }
     }
 
     private fun addClientInCloud() {
@@ -118,14 +110,14 @@ class SignupActivity : AppCompatActivity() {
 // Add a new document with a generated ID
 
 // Add a new document with a generated ID
-        val TAG: String = "SignupActivity";
-        var uid: String? = mAuth.uid
+        val TAG = "SignupActivity"
+        val uid: String? = mAuth.uid
         if (uid != null) {
             db.collection("users")
                 .document(uid)
                 .set(user)
                 .addOnSuccessListener { Log.d(TAG, "Utente aggiunto correttamente" )}
-                .addOnFailureListener(OnFailureListener { e -> Log.w(TAG, "Error adding document", e) })
+                .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
         }
     }
 
@@ -143,17 +135,18 @@ class SignupActivity : AppCompatActivity() {
 // Add a new document with a generated ID
 
 // Add a new document with a generated ID
-        val TAG: String = "SignupActivity";
-        var uid: String? = mAuth.uid
+        val TAG = "SignupActivity"
+        val uid: String? = mAuth.uid
         if (uid != null) {
             db.collection("users")
                     .document(uid)
                     .set(user)
                     .addOnSuccessListener { Log.d(TAG, "Utente aggiunto correttamente" )}
-                    .addOnFailureListener(OnFailureListener { e -> Log.w(TAG, "Error adding document", e) })
+                    .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initUsersDialog() {
         dialog = BottomSheetDialog(this)
         dialog.setContentView(R.layout.layout_type_user)
@@ -169,14 +162,13 @@ class SignupActivity : AppCompatActivity() {
                 }
             }
         }
-        dialog.ivClose.onClick {
+        dialog.ivClose.setOnClickListener {
             dialog.dismiss()
         }
     }
 
-
-}
-
-private fun Any.onClick(function: () -> Unit) {
-
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
 }

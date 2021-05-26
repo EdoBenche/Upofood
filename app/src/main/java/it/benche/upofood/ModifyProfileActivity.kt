@@ -1,8 +1,6 @@
 package it.benche.upofood
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -13,6 +11,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.utils.extensions.onClick
 import kotlinx.android.synthetic.main.activity_modify_profile.*
 
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS",
+    "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS"
+)
 class ModifyProfileActivity: AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
@@ -49,7 +50,7 @@ class ModifyProfileActivity: AppCompatActivity() {
 
     private fun updateProfile() {
         if(edtNewPassword.text.isNotEmpty() && edtOldPassword.text.isNotEmpty()) {
-            var credential: AuthCredential = EmailAuthProvider.getCredential(
+            val credential: AuthCredential = EmailAuthProvider.getCredential(
                     mAuth.currentUser.email,
                     edtOldPassword.text.toString()
             )

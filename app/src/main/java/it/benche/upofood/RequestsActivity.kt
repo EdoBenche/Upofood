@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_requests.*
 import kotlinx.android.synthetic.main.activity_select_rider.*
 import kotlinx.android.synthetic.main.activity_select_rider.recyView
 
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "NAME_SHADOWING")
 class RequestsActivity: AppCompatActivity() {
     lateinit var db: FirebaseFirestore
     lateinit var mAuth: FirebaseAuth
@@ -42,7 +42,9 @@ class RequestsActivity: AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setNavigationOnClickListener { super.onBackPressed() }
+        toolbar.setNavigationOnClickListener {
+            finish()
+            super.onBackPressed() }
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
@@ -212,6 +214,11 @@ class RequestsActivity: AppCompatActivity() {
                 .update(mapOf("rider" to list[0]))
 
         declineRequest(pos)
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }
 

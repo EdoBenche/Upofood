@@ -1,11 +1,11 @@
 package it.benche.upofood.utils
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.request.RequestOptions
 import it.benche.upofood.Product
 import it.benche.upofood.R
 import kotlinx.android.synthetic.main.item_product_cart.view.*
@@ -43,9 +43,10 @@ class CartAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val productName: TextView = itemView.product
         private val productQty: TextView = itemView.qty
 
+        @SuppressLint("SetTextI18n")
         fun bind(productCard : Product) {
             productName.text = productCard.prodotto
-            productQty.text = "Quantità: ${productCard.qty.toString()}"
+            productQty.text = "Quantità: ${productCard.qty}"
         }
     }
 }

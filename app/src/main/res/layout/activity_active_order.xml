@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Profilo"
+                android:text="@string/profile"
                 android:textStyle="bold"
                 android:textColor="@color/md_grey_700"/>
         </LinearLayout>
@@ -173,7 +173,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Valuta il nostro servizio!"
+                    android:text="@string/rate"
                     android:textColor="@color/white"
                     style="@style/TextAppearance.AppCompat.Large"
                     android:layout_gravity="center"/>
@@ -186,7 +186,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Qualità merce"
+                        android:text="@string/quality_prod"
                         android:textColor="@color/white"
                         style="@style/TextAppearance.AppCompat.Medium"/>
                     <RatingBar
@@ -210,7 +210,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Velocità consegna"
+                        android:text="@string/delivery_fast"
                         android:textColor="@color/white"
                         style="@style/TextAppearance.AppCompat.Medium"/>
                     <RatingBar
@@ -234,7 +234,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cortesia rider"
+                        android:text="@string/courtesy"
                         android:textColor="@color/white"
                         style="@style/TextAppearance.AppCompat.Medium"/>
                     <RatingBar
@@ -277,7 +277,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginRight="10dp"
-                            android:text="Torna alla home"
+                            android:text="@string/back_home"
                             android:textStyle="bold"
                             android:textColor="@color/md_grey_700"/>
                     </LinearLayout>
@@ -317,7 +317,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Qualcosa è andato storto..."
+                    android:text="@string/oh_oh"
                     android:textColor="@color/white"
                     style="@style/TextAppearance.AppCompat.Large"
                     android:layout_gravity="center"/>
@@ -335,7 +335,7 @@
                     style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Se vuoi puoi ritentare una nuova consegna"
+                    android:text="@string/retry"
                     android:textColor="@color/white"
                     android:layout_gravity="center"/>
 
@@ -365,7 +365,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginRight="10dp"
-                            android:text="Torna alla home"
+                            android:text="@string/back_home"
                             android:textStyle="bold"
                             android:textColor="@color/md_grey_700"/>
                     </LinearLayout>

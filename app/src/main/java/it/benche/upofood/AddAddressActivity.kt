@@ -16,7 +16,6 @@ import com.google.maps.android.SphericalUtil.computeDistanceBetween
 import it.benche.upofood.models.Address
 import it.benche.upofood.utils.SimpleLocation
 import it.benche.upofood.utils.extensions.checkIsEmpty
-import it.benche.upofood.utils.extensions.onClick
 import it.benche.upofood.utils.extensions.showError
 import it.benche.upofood.utils.Constants
 import it.benche.upofood.utils.extensions.isGPSEnable
@@ -53,7 +52,7 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
             addressId = intent?.getIntExtra(Constants.KeyIntent.ADDRESS_ID, -1)
         }
 
-        btnSaveAddress.onClick {
+        btnSaveAddress.setOnClickListener {
             if(validate()) {
                 if (address == null) {
                     address = Address()
@@ -63,7 +62,7 @@ class AddAddressActivity : AppCompatActivity(), SimpleLocation.Listener {
             }
         }
 
-        rlUseCurrentLocation.onClick {
+        rlUseCurrentLocation.setOnClickListener {
             if(isGPSEnable()) {
                 simpleLocation?.beginUpdates()
             }

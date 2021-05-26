@@ -113,7 +113,7 @@
                     android:id="@+id/old"
                     style="@style/TextInputLayoutStyle"
                     android:layout_weight="1"
-                    android:hint="Vecchia password"
+                    android:hint="@string/old_psw"
                     android:enabled="true"
                     android:layout_marginRight="16dp"
                     android:layout_marginLeft="16dp">
@@ -128,7 +128,7 @@
                     android:id="@+id/newPwd"
                     style="@style/TextInputLayoutStyle"
                     android:layout_weight="1"
-                    android:hint="Nuova password"
+                    android:hint="@string/new_psw"
                     android:enabled="true"
                     android:layout_marginRight="16dp"
                     android:layout_marginLeft="16dp">
@@ -151,7 +151,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginLeft="16dp"
-                    android:text="I campi della password possono rimanere vuoti, pertanto la password non verrà modificata"/>
+                    android:text="@string/adv_new_psw"/>
             </LinearLayout>
 
             <Button

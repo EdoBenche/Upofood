@@ -60,7 +60,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Ordine: "
+                            android:text="@string/order"
                             android:textSize="@dimen/font_size_xxlarge"/>
                         <TextView
                             android:id="@+id/numberOrder"
@@ -78,7 +78,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cliente: "
+                            android:text="@string/client_order"
                             android:layout_weight="1"
                             android:textSize="@dimen/font_size_large"/>
                         <TextView
@@ -98,7 +98,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".0"
-                            android:text="Indirizzo di consegna:"/>
+                            android:text="@string/address_order"/>
                         <TextView
                             android:id="@+id/address"
                             android:layout_width="wrap_content"
@@ -228,7 +228,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="Preso in carico"
+                                    android:text="@string/preso_in_carico"
                                     android:textStyle="normal"
                                     android:textSize="12dp"
                                     android:textColor="@color/white"/>
@@ -253,7 +253,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="In preparazione"
+                                    android:text="@string/in_preparazione"
                                     android:textStyle="normal"
                                     android:textSize="12dp"
                                     android:textColor="@color/white"/>
@@ -283,7 +283,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="Consegnato al rider"
+                                    android:text="@string/consegnato_al_rider"
                                     android:textStyle="normal"
                                     android:textSize="12dp"
                                     android:textColor="@color/white"/>

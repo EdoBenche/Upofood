@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/design_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -88,7 +89,7 @@
                 style="@style/TextAppearance.AppCompat.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Il tuo ordine"
+                android:text="@string/your_order"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
 
@@ -107,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp"
-                android:text="Totale ordine"
+                tools:text="Totale ordine"
                 android:textColor="@color/white"/>
 
         </LinearLayout>

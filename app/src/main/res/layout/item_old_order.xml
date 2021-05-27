@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="10dp"
     app:cardCornerRadius="10dp"
     app:cardPreventCornerOverlap="false">
@@ -32,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/numberOrder"
-                android:text="Ordine #"
+                tools:text="Ordine #"
                 android:textColor="#000"
                 android:textSize="19sp"
                 />
@@ -41,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/date"
-                android:text="Data"
+                tools:text="Data"
                 android:textSize="15sp"
                 android:layout_marginTop="10dp"
                 />
@@ -58,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="22,60€"
+            tools:text="22,60€"
             android:textColor="@color/md_orange_600"
             android:textSize="@dimen/font_size_xxlarge"/>
     </LinearLayout>

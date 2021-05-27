@@ -86,7 +86,7 @@ class DrawerActivity : AppCompatActivity() {
                             nameandsurname.text = "$name $surname"
                             role.text = r_ole
 
-                            Snackbar.make(drawerLayout, "Accesso eseguito come " + mAuth.currentUser!!.email, Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(drawerLayout, "Account " + mAuth.currentUser!!.email, Snackbar.LENGTH_SHORT).show()
                         }
                     }
                 }

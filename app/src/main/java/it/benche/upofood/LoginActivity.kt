@@ -1,7 +1,10 @@
 package it.benche.upofood
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -27,6 +30,7 @@ import kotlinx.android.synthetic.main.activity_login.loadingPanel
 import kotlinx.android.synthetic.main.activity_requests.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import java.util.*
 
 
 @Suppress("DEPRECATION")
@@ -185,6 +189,8 @@ class LoginActivity : AppCompatActivity() {
         prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply()
     }
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -237,13 +243,13 @@ class LoginActivity : AppCompatActivity() {
                     .document(uid)
                     .set(user)
                     .addOnSuccessListener { Log.d(TAG, "Utente aggiunto correttamente")}
-                    .addOnFailureListener({ e ->
+                    .addOnFailureListener { e ->
                         Log.w(
                             TAG,
                             "Error adding document",
                             e
                         )
-                    })
+                    }
             }
         }
 

@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Il carrello è vuoto"
+        android:text="@string/empty_cart"
         android:visibility="gone"
         android:textSize="@dimen/font_size_large"
         android:layout_below="@id/toolbar"
@@ -71,13 +71,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Subtotale:"/>
+                    android:text="@string/subtotal"/>
                 <TextView
                     android:id="@+id/subtotal"
                     style="@style/TextAppearance.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20€"
+                    tools:text="20€"
                     android:textSize="18sp"/>
             </LinearLayout>
             <LinearLayout
@@ -90,13 +90,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="IVA (+22%):"/>
+                    android:text="@string/iva_22"/>
                 <TextView
                     android:id="@+id/tax"
                     style="@style/TextAppearance.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20€"
+                    tools:text="20€"
                     android:textSize="18sp"/>
             </LinearLayout>
 
@@ -119,13 +119,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Totale:"/>
+                    android:text="@string/total"/>
                 <TextView
                     android:id="@+id/total"
                     style="@style/TextAppearance.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20€"
+                    tools:text="20€"
                     android:textSize="22sp"/>
             </LinearLayout>
 
@@ -158,7 +158,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Effettua ordine"
+                        android:text="@string/add_order"
                         android:textStyle="normal"
                         android:textSize="16dp"
                         android:textColor="@color/white"/>
@@ -190,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"
-                    android:text="Ti ricordiamo di indossare la mascherina durante l'incontro con il nostro rider onde evitare il contagio da Coronavirus"/>
+                    android:text="@string/covid_19"/>
             </LinearLayout>
 
         </LinearLayout>

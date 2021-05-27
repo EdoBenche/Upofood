@@ -1,9 +1,15 @@
 package it.benche.upofood
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
@@ -16,12 +22,16 @@ import it.benche.upofood.manager.RidersPositionActivity
 import it.benche.upofood.rider.MyOldTripsActivity
 import it.benche.upofood.rider.MyVehicleActivity
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.util.*
 
+
+@Suppress("DEPRECATION")
 class ProfileActivity: AppCompatActivity() {
 
     lateinit var mAuth: FirebaseAuth
     lateinit var db: FirebaseFirestore
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -125,6 +135,59 @@ class ProfileActivity: AppCompatActivity() {
         myTransport.setOnClickListener {
             startActivity(Intent(this, MyVehicleActivity::class.java))
         }
+
+        lang_ro.setOnClickListener {
+            setLocate("ro")
+            restart()
+            Toast.makeText(this, "Rumeno", Toast.LENGTH_SHORT).show()
+        }
+        lang_es.setOnClickListener {
+            setLocate("es")
+            restart()
+            Toast.makeText(this, "Spagnolo", Toast.LENGTH_SHORT).show()
+        }
+        lang_en.setOnClickListener {
+            setLocate("en")
+            restart()
+            Toast.makeText(this, "Inglese", Toast.LENGTH_SHORT).show()
+        }
+        lang_it.setOnClickListener {
+            setLocate("")
+            restart()
+            Toast.makeText(this, "Italiano", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun restart() {
+        Toast.makeText(this, "L'app verrà riavviata tra 2 secondi", Toast.LENGTH_SHORT).show()
+        Handler().postDelayed({
+            val intent = Intent(this, SplashActivity::class.java)
+            startActivity(intent)
+            finishAffinity()}, 2000)
+
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    fun language(activity: Activity, language: String){
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val resources = activity.resources
+        val configuration = resources.configuration
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+    }
+
+    fun setLocate(Lang:String) {
+        val locale = Locale(Lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+
+        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+        editor.putString("My_Lang", Lang)
+        editor.apply()
     }
 
     private fun modifyProfile() {

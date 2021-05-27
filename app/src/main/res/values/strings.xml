@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Upofood</string>
 
-    <string name="hint_username">Username</string>
+    <string name="hint_username" translatable="false">Username</string>
     <string name="hint_name">Nome</string>
     <string name="hint_surname">Cognome</string>
-    <string name="hint_password">Password</string>
+    <string name="hint_password" translatable="false">Password</string>
     <string name="button_sign_in">Accedi</string>
     <string name="button_sign_up">Registrati</string>
     <string name="button_send">Invia</string>
@@ -22,50 +22,50 @@
     <string name="text_forgot_password_title">Password dimenticata? Nessun problema</string>
     <string name="text_forgot_password_message">Ti invieremo un link per resettare la password</string>
 
-    <string name="hint_email">Email</string>
+    <string name="hint_email" translatable="false">Email</string>
     <string name="hint_phone">Telefono</string>
     <string name="hint_confirm_password">Conferma Password</string>
 
     <string name="next">Avanti</string>
     <string name="skip">Salta</string>
-    <string name="logout">Logout</string>
+    <string name="logout" translatable="false">Logout</string>
 
-    <string name="facebook_app_id">151026239999095</string>
-    <string name="fb_login_protocol_scheme">fb151026239999095</string>
+    <string name="facebook_app_id" translatable="false">151026239999095</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb151026239999095</string>
 
     <string name="client">Cliente</string>
-    <string name="rider">Rider</string>
+    <string name="rider" translatable="false">Rider</string>
 
     <string name="choose">Scegli tipo utente</string>
-    <string name="title_activity_drawer">DrawerActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_drawer" translatable="false">DrawerActivity</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="action_settings">Profilo</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home" translatable="false">Home</string>
     <string name="menu_categories">Categorie</string>
-    <string name="menu_chat">Chat</string>
+    <string name="menu_chat" translatable="false">Chat</string>
     <string name="list_trips">Lista viaggi</string>
 
     <string name="lbl_current_location">Posizione corrente</string>
     <string name="hint_address">Indirizzo</string>
     <string name="hint_provincia">Provincia</string>
-    <string name="hint_address_type">Address Type</string>
+    <string name="hint_address_type" translatable="false">Address Type</string>
     <string name="hint_city">Città</string>
     <string name="hint_pin_code">Cap</string>
 
-    <string name="error_no_internet">Oops!! You Are Not Connected To Internet</string>
-    <string name="error_field_required">Field Required</string>
-    <string name="error_pwd_digit_required">Maximum 6 digit Required</string>
-    <string name="error_enter_valid_email">Enter Valid Email</string>
-    <string name="error_password_not_matches">Password not matches</string>
-    <string name="error_gps_not_enabled">GPS location is not enabled.</string>
-    <string name="error_something_went_wrong">Something went wrong</string>
-    <string name="error_permission_required">Location Permission Required</string>
-    <string name="error_address_type">Please Select Address Type</string>
+    <string name="error_no_internet">Oops!! Non sei connesso a internet</string>
+    <string name="error_field_required">Campo richiesto</string>
+    <string name="error_pwd_digit_required">Richieste al massimo 6 cifre</string>
+    <string name="error_enter_valid_email">Inserisci una email valida</string>
+    <string name="error_password_not_matches">Password non corrispondente</string>
+    <string name="error_gps_not_enabled">La geolocalizzazione GPS non è attiva</string>
+    <string name="error_something_went_wrong">Qualcosa è andato storto</string>
+    <string name="error_permission_required">Richiesto permesso per la posizione</string>
+    <string name="error_address_type">Per favore, seleziona il tipo di indirizzo</string>
 
     <string name="add_product">Aggiungi prodotto</string>
     <string name="hint_product">Nome prodotto</string>
@@ -96,7 +96,7 @@
     <string name="salumi_e_formaggi">Salumi e formaggi</string>
     <string name="tempo_libero">Tempo libero</string>
 
-    <string name="lbl_select_media">Scegli immagine da...</string>
+    <string name="lbl_select_media">Scegli immagine da…</string>
     <string name="fromCamera">Scatta foto</string>
     <string name="fromGallery">Scegli dalla galleria</string>
 
@@ -116,7 +116,7 @@
     <string name="storicoViaggi">I miei viaggi</string>
     <string name="myTransport">Il mio mezzo di trasporto</string>
     <string name="manageShop">Modifica informazioni negozio</string>
-    <string name="signout">Sign out</string>
+    <string name="signout">Disconnetti</string>
 
     <string name="lbl_submit_order">Effettua ordine</string>
     <string name="carrello">Carrello</string>
@@ -146,7 +146,7 @@
     <string name="delivery_fast">Velocità consegna</string>
     <string name="courtesy">Cortesia rider</string>
     <string name="back_home">Torna alla home</string>
-    <string name="oh_oh">Qualcosa è andato storto...</string>
+    <string name="oh_oh">Qualcosa è andato storto…</string>
     <string name="retry">Se vuoi puoi ritentare una nuova consegna</string>
     <string name="active_trips">Lista viaggi attivi</string>
     <string name="intro_rider">Questo è il tuo account rider! Da qui potrai accettare/rifiutare viaggi, accedere a quelli attivi e parlare coi gestori nel negozio.</string>
@@ -162,9 +162,9 @@
     <string name="ask_vehicle">Con quale veicolo effettui le consegne?</string>
     <string name="bike">Bicicletta 🚲</string>
     <string name="monopattino">Monopattino 🛴</string>
-    <string name="scooter">Scooter 🛵</string>
+    <string name="scooter">Motorino 🛵</string>
     <string name="car">Automobile 🚗</string>
-    <string name="space_shuttle">Space Shuttle 🚀</string>
+    <string name="space_shuttle" translatable="false">Space Shuttle 🚀</string>
     <string name="infos">Informazioni aggiuntive</string>
     <string name="marca">Marca</string>
     <string name="modello">Modello</string>
@@ -180,5 +180,26 @@
     <string name="buy">Compra</string>
     <string name="modify_product">Modifica il prodotto</string>
     <string name="delete">Elimina</string>
+    <string name="empty_cache">Svuota la cache</string>
+    <string name="empty_cart">Il carrello è vuoto</string>
+    <string name="subtotal">Subtotale:</string>
+    <string name="iva_22">IVA (+22%):</string>
+    <string name="total">Totale:</string>
+    <string name="add_order">Effettua ordine</string>
+    <string name="covid_19">Ti ricordiamo di indossare la mascherina durante l\'incontro con il nostro rider onde evitare il contagio da Coronavirus</string>
+    <string name="your_order">Il tuo ordine</string>
+    <string name="ask_delete">Sei sicuro di voler eliminare il prodotto?</string>
+    <string name="yes">Sì</string>
+    <string name="no">No</string>
+    <string name="added_product">Prodotto aggiunto</string>
+    <string name="delivered">Consegnato</string>
+    <string name="not_delivered">Non consegnato</string>
+    <string name="indications">Indicazioni</string>
+    <string name="chat" translatable="false">Chat</string>
+    <string name="chooseLang">Scegli la lingua</string>
+    <string name="lang_it">Italiano</string>
+    <string name="lang_en">Inglese</string>
+    <string name="lang_es">Spagnolo</string>
+    <string name="lang_ro">Rumeno</string>
 
 </resources>

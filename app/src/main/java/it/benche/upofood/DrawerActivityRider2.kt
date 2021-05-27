@@ -3,12 +3,15 @@ package it.benche.upofood
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import it.benche.upofood.manager.ListManagersActivity
 import kotlinx.android.synthetic.main.activity_drawer_rider2.*
+import kotlinx.android.synthetic.main.activity_message_list.*
 
 class DrawerActivityRider2 : AppCompatActivity() {
     
@@ -41,6 +44,7 @@ class DrawerActivityRider2 : AppCompatActivity() {
             .document(mAuth.currentUser.uid)
             .get()
             .addOnSuccessListener { document ->
+                Snackbar.make(rLayoutRider, "Account " + mAuth.currentUser.email, Snackbar.LENGTH_SHORT).show()
                 helloRider.text = "Ciao ${document.getString("nome").toString()}!"
                 val nRider = document.getLong("numeroRider")!!.toString()
                 availability.isChecked = document.getString("available").toString() == "yes"

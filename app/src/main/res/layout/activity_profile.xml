@@ -29,6 +29,64 @@
         android:padding="15dp"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lang_ro"
+                android:layout_margin="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="50dp"
+                app:cardBackgroundColor="@color/md_blue_100">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/romania"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lang_es"
+                android:layout_margin="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="50dp"
+                app:cardBackgroundColor="@color/md_blue_100">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/spain"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lang_en"
+                android:layout_margin="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="50dp"
+                app:cardBackgroundColor="@color/md_blue_100">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/english"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lang_it"
+                android:layout_margin="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="50dp"
+                app:cardBackgroundColor="@color/md_blue_100">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_italy"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/profile_image"
             android:layout_gravity="center"
@@ -73,7 +131,7 @@
         <TextView
             android:id="@+id/deleteCache"
             style="@style/AccountLabel"
-            android:text="Svuota la cache" />
+            android:text="@string/empty_cache" />
         <TextView
             android:id="@+id/modifyProfile"
             style="@style/AccountLabel"

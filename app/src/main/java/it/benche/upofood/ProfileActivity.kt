@@ -75,7 +75,7 @@ class ProfileActivity: AppCompatActivity() {
                 }
 
         signOutButton.setOnClickListener {
-            db.collection("users")
+            /*db.collection("users")
                     .get()
                     .addOnSuccessListener { result ->
                         for(document in result) {
@@ -85,7 +85,7 @@ class ProfileActivity: AppCompatActivity() {
                                         .update(mapOf("available" to "no"))
                             }
                         }
-                    }
+                    }*/
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(this,LoginActivity::class.java))
         }

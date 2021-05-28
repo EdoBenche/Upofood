@@ -178,7 +178,6 @@ class ProfileActivity: AppCompatActivity() {
         dialog.setContentView(R.layout.about)
         dialog.window?.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
         dialog.show()
-
         dialog.ivClose.setOnClickListener {
             dialog.dismiss()
         }

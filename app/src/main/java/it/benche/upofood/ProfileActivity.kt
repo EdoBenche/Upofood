@@ -26,7 +26,6 @@ import it.benche.upofood.rider.MyOldTripsActivity
 import it.benche.upofood.rider.MyVehicleActivity
 import kotlinx.android.synthetic.main.about.*
 import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.no_connection.*
 import java.util.*
 
 

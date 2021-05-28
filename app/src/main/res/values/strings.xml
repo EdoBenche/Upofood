@@ -162,7 +162,7 @@
     <string name="ask_vehicle">Con quale veicolo effettui le consegne?</string>
     <string name="bike">Bicicletta 🚲</string>
     <string name="monopattino">Monopattino 🛴</string>
-    <string name="scooter">Motorino 🛵</string>
+    <string name="scooter">Moto 🛵</string>
     <string name="car">Automobile 🚗</string>
     <string name="space_shuttle" translatable="false">Space Shuttle 🚀</string>
     <string name="infos">Informazioni aggiuntive</string>
@@ -201,5 +201,11 @@
     <string name="lang_en">Inglese</string>
     <string name="lang_es">Spagnolo</string>
     <string name="lang_ro">Rumeno</string>
+    <string name="lang_sq">Albanese</string>
+    <string name="btn_retry">Riprova</string>
+    <string name="about" translatable="false">About</string>
+    <string name="t1_about">Progetto realizzato interamente da Edoardo Benchea, MATRICOLA 20029345</string>
+    <string name="t2_about">Progetto per l\'esame di Applicazioni Mobili, A.A. 2020/2021</string>
+    <string name="t3_about">Si ringrazia @WILDWillDesigns per la realizzazione del logo e Franko Bufazi per la traduzione in Albanese</string>
 
 </resources>

@@ -164,4 +164,9 @@
     <string name="lang_es">Español</string>
     <string name="lang_ro">Rumano</string>
     <string name="no">No</string>
+    <string name="btn_retry">Intentar otra vez</string>
+    <string name="t1_about">Proyecto realizado íntegramente por Edoardo Benchea, NÚMERO DE SERIE 20029345</string>
+    <string name="t2_about">Proyecto de examen de aplicación móvil, A.A. 2020/2021</string>
+    <string name="t3_about">Gracias a @WILDWillDesigns por la creación del logo y Franko Bufazi por la traducción al albanés</string>
+    <string name="lang_sq">Albanés</string>
 </resources>

@@ -34,6 +34,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right">
             <androidx.cardview.widget.CardView
+                android:id="@+id/lang_sq"
+                android:layout_margin="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="50dp"
+                app:cardBackgroundColor="@color/md_blue_100">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/albania"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:id="@+id/lang_ro"
                 android:layout_margin="5dp"
                 android:layout_width="50dp"
@@ -128,6 +141,10 @@
             android:textColor="@color/textColorPrimary"
             android:textSize="@dimen/font_size_large" />
 
+        <TextView
+            android:id="@+id/about"
+            style="@style/AccountLabel"
+            android:text="@string/about" />
         <TextView
             android:id="@+id/deleteCache"
             style="@style/AccountLabel"

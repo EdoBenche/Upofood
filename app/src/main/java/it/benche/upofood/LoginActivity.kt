@@ -1,8 +1,12 @@
 package it.benche.upofood
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -27,6 +31,7 @@ import kotlinx.android.synthetic.main.activity_login.loadingPanel
 import kotlinx.android.synthetic.main.activity_requests.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.no_connection.*
 import java.util.*
 
 
@@ -54,19 +59,46 @@ class LoginActivity : AppCompatActivity() {
         button_signin.setOnClickListener{
             loginInUser()
         }
+    }
 
-        //signin = findViewById(R.id.sign_in_button)
+    private fun checkInternetConnection(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        return cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
+    }
+
+    private fun showDialog() {
+        val dialog = Dialog(this)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+        dialog.setContentView(R.layout.no_connection)
+        dialog.window?.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        dialog.show()
+
+        dialog.retry.setOnClickListener {
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
+        }
+
+        dialog.close.setOnClickListener {
+            this.finishAffinity()
+        }
     }
 
     public override fun onStart() {
         super.onStart()
 
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = mAuth.currentUser
-        if(currentUser != null) {
-            val uid = mAuth.uid
+        if(!checkInternetConnection()) {
+            loadingPanel.visibility = RelativeLayout.GONE
+            showDialog()
+        } else {
+            // Check if user is signed in (non-null) and update UI accordingly.
+            val currentUser = mAuth.currentUser
+            if(currentUser != null) {
+                val uid = mAuth.uid
 
-            db.collection("users")
+                db.collection("users")
                     .get()
                     .addOnSuccessListener { result ->
                         for(document in result) {
@@ -84,9 +116,11 @@ class LoginActivity : AppCompatActivity() {
                             }
                         }
                     }
-            //startActivity(Intent(this, DrawerActivity::class.java))
-        } else {
-        loadingPanel.visibility = RelativeLayout.GONE }
+                //startActivity(Intent(this, DrawerActivity::class.java))
+            } else {
+                loadingPanel.visibility = RelativeLayout.GONE }
+        }
+
     }
 
     override fun onBackPressed() {

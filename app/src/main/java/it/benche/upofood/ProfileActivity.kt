@@ -1,12 +1,15 @@
 package it.benche.upofood
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -21,7 +24,9 @@ import it.benche.upofood.manager.OldOrdersActivity
 import it.benche.upofood.manager.RidersPositionActivity
 import it.benche.upofood.rider.MyOldTripsActivity
 import it.benche.upofood.rider.MyVehicleActivity
+import kotlinx.android.synthetic.main.about.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.no_connection.*
 import java.util.*
 
 
@@ -90,6 +95,10 @@ class ProfileActivity: AppCompatActivity() {
             startActivity(Intent(this,LoginActivity::class.java))
         }
 
+        about.setOnClickListener {
+            showAbout()
+        }
+
         deleteCache.setOnClickListener {
             cacheDir.deleteRecursively()
             Toast.makeText(this, "La cache è stata pulita con successo!", Toast.LENGTH_SHORT).show()
@@ -136,6 +145,11 @@ class ProfileActivity: AppCompatActivity() {
             startActivity(Intent(this, MyVehicleActivity::class.java))
         }
 
+        lang_sq.setOnClickListener {
+            setLocate("sq")
+            restart()
+            Toast.makeText(this, "Albanese", Toast.LENGTH_SHORT).show()
+        }
         lang_ro.setOnClickListener {
             setLocate("ro")
             restart()
@@ -155,6 +169,18 @@ class ProfileActivity: AppCompatActivity() {
             setLocate("")
             restart()
             Toast.makeText(this, "Italiano", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showAbout() {
+        val dialog = Dialog(this)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+        dialog.setContentView(R.layout.about)
+        dialog.window?.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        dialog.show()
+
+        dialog.ivClose.setOnClickListener {
+            dialog.dismiss()
         }
     }
 

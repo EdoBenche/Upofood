@@ -1,0 +1,190 @@
+<resources>
+    <string name="app_name">Upofood</string>
+
+    <string name="hint_name">Emri</string>
+    <string name="hint_surname">Mbiemri</string>
+    <string name="button_sign_in">Hyr me identifikim</string>
+    <string name="button_sign_up">Regjistrohu</string>
+    <string name="button_send">Dërgo</string>
+    <string name="text_forgot_password">Ke harruar fjalëkalimin?</string>
+    <string name="text_signin_message">Hej, hyr me identifikim në llogarine tende</string>
+    <string name="text_signin_social_media">Ose përdor një rrjet social për të hyr me identifikim</string>
+    <string name="text_signup_social_media">Ose përdor një rrjet social për t\'u regjistruar</string>
+    <string name="text_signin_signup">Nuk ke akoma një llogari personale? <b>Regjistrohu</b></string>
+    <string name="text_signup_terms">Duke u regjistruar, pranon të gjitha <b>kushtet tona të përdorimit</b></string>
+    <string name="text_signup_message">Hej, përfundo llogarinë tende</string>
+
+    <string name="added">Përdorues i regjistruar me sukses!</string>
+    <string name="redirect">Pas pak do të ridrejtohesh në faqen kryesore</string>
+
+    <string name="text_forgot_password_title">Ke harruar fjalëkalimin? Pa problem</string>
+    <string name="text_forgot_password_message">Do të dërgojmë një link për ta rivendosur personalisht</string>
+
+    <string name="hint_phone">Telefon</string>
+    <string name="hint_confirm_password">Konfirmo fjalëkalimin</string>
+
+    <string name="next">Para</string>
+    <string name="skip">Anashkalo</string>
+
+    <string name="client">Klient</string>
+
+    <string name="choose">Zgjidh llojin e përdoruesit</string>
+    <string name="action_settings">Profil</string>
+
+    <string name="menu_categories">Kategoritë</string>
+    <string name="list_trips">Lista e udhëtimeve</string>
+
+    <string name="lbl_current_location">Pozicioni aktual</string>
+    <string name="hint_address">Adresa</string>
+    <string name="hint_provincia">Provinca</string>
+    <string name="hint_city">Qyteti</string>
+    <string name="hint_pin_code">Kodi postal</string>
+
+    <string name="error_no_internet">Oops!! Nuk je i lidhur në internet</string>
+    <string name="error_field_required">Fushë e detyrueshme</string>
+    <string name="error_pwd_digit_required">Kërkohen të paktën 6 shifra</string>
+    <string name="error_enter_valid_email">Vendos një email të vlefshëm</string>
+    <string name="error_password_not_matches">Fjalëkalimi nuk korespondon</string>
+    <string name="error_gps_not_enabled">Vendndodhja gjeografike GPS nuk është aktive</string>
+    <string name="error_something_went_wrong">Diçka shkoi keq</string>
+    <string name="error_permission_required">Kërkohet leja për pozicionin</string>
+    <string name="error_address_type">Ju lutemi, zgjidhni llojin e adresës</string>
+
+    <string name="add_product">Shto një produkt</string>
+    <string name="hint_product">Emri i produktit</string>
+    <string name="hint_description">Përshkrimi</string>
+    <string name="hint_price">Çmimi</string>
+    <string name="hint_qty">Sasia</string>
+    <string name="hint_categories">Kategoria</string>
+    <string name="submit">Dërgo</string>
+    <string name="add_image">Shto një imazh</string>
+    <string name="lbl_select_category">Zgjidh kategorinë</string>
+    <string name="text_todo">Mbyll</string>
+
+    <string name="bimbi">Produkte për fëmijet</string>
+    <string name="carne">Mish</string>
+    <string name="bevande">Pije</string>
+    <string name="casa">Produkte për shtëpinë</string>
+    <string name="dolci">Embëlsira</string>
+    <string name="frutta_e_verdura">Fruta dhe perime</string>
+    <string name="gastronomia_pasta_fresca">Gastronomi dhe makarona të freskta</string>
+    <string name="gelati_surgelati">Akullore dhe ushqime të ngrira</string>
+    <string name="igiene_personale">Higjienë personale</string>
+    <string name="latticini">Qumësht, gjalp, vezë dhe kos</string>
+    <string name="pane_e_pasticceria">Buk dhe pastiçeri</string>
+    <string name="pesce">Peshk</string>
+    <string name="prodotti_alimentari">Produkte alimentare</string>
+    <string name="prodotti_animali">Produkte për kafshët</string>
+    <string name="ricorrenze">Produkte për festat</string>
+    <string name="salumi_e_formaggi">Mishra dhe djathra</string>
+    <string name="tempo_libero">Koha e lirë</string>
+
+    <string name="lbl_select_media">Zgjidh imazhin nga…</string>
+    <string name="fromCamera">Bëj një foto</string>
+    <string name="fromGallery">Zgjidhe nga galeria</string>
+
+
+    <string name="lbl_add_to_cart">Shtoje në shportë</string>
+    <string name="lbl_buy_now">Përfundo blerjen</string>
+    <string name="lbl_modify_product">Modifiko produktin</string>
+    <string name="magazzino">Produkte të ngela: </string>
+
+    <string name="modifyProfile">Modifiko profilin</string>
+    <string name="addGestore">Shto një menaxher</string>
+    <string name="storicoOrdini">Historiku i porosive</string>
+    <string name="myRiders">Rider-at e mi</string>
+    <string name="manageAddress">Modifiko adresën</string>
+    <string name="storicoOrdiniCliente">Porositë e mia</string>
+    <string name="storicoViaggi">Udhëtimet e mia</string>
+    <string name="myTransport">Mjeti im i transportit</string>
+    <string name="manageShop">Modifiko të dhenat e dyqanit</string>
+    <string name="signout">Shkëputu</string>
+
+    <string name="lbl_submit_order">Kryej porosinë</string>
+    <string name="carrello">Shporta</string>
+    <string name="ordini">Porositë aktive</string>
+    <string name="menu_orders">Porositë aktive</string>
+    <string name="newOrd">I ri</string>
+    <string name="myOrders">Porositë e mia</string>
+    <string name="selectRider">Zgjidh rider-in</string>
+    <string name="btnAccept">Porosi e pranuar</string>
+    <string name="btnPrep">Porosi në përgatitje e sipër</string>
+    <string name="btnDelivered">Dorëzuar rider-it</string>
+    <string name="activeTrips">Udhëtime aktive</string>
+    <string name="richieste">Kërkesa</string>
+    <string name="chat_gestori">Chat e menaxherve</string>
+    <string name="chat_gestore">Chat e menaxherit</string>
+    <string name="aggiorna_profilo">Përditëso profilin</string>
+    <string name="aggiorna_negozio">Përditëso dyqanin</string>
+    <string name="nome_del_negozio">Emri i dyqanit</string>
+    <string name="ordine_attivo">Porosi aktive</string>
+    <string name="modifica_profilo">Modifiko profilin</string>
+    <string name="il_mio_negozio">Dyqani im</string>
+    <string name="seleziona_rider_per_la_consegna">Zgjidh rider-in për dorëzimin</string>
+    <string name="profile">Profil</string>
+    <string name="rate">Vlerëso shërbimin tonë!</string>
+    <string name="quality_prod">Cilësia e produktit</string>
+    <string name="delivery_fast">Shpjetësia e dorëzimit</string>
+    <string name="courtesy">Mirësjellja e rider-it</string>
+    <string name="back_home">Kthehu në faqen kryesore</string>
+    <string name="oh_oh">Diçka shkoi keq…</string>
+    <string name="retry">Nëse dëshiron mund të provosh përsëri porosinë</string>
+    <string name="active_trips">Lista e udhëtimeve aktive</string>
+    <string name="intro_rider">Kjo është llogaria jote si rider! Që këtu mund të pranosh/refuzosh udhëtime, të shohësh ato që tashmë janë aktive dhe të flasësh me menaxherët e dyqanit.</string>
+    <string name="new_requests">Kërkesa të reja</string>
+    <string name="chat_managers">Chat e menaxherëve</string>
+    <string name="list_active_trips">Lista e udhëtimeve aktive</string>
+    <string name="available">Je i disponueshëm?</string>
+    <string name="enter_message">Vendos mesazhin</string>
+    <string name="old_psw">Fjalëkalimi i vjetër</string>
+    <string name="new_psw">Fjalëkalimi i ri</string>
+    <string name="adv_new_psw">Fushat e fjalëkalimeve mund të mbeten boshë kur nuk dëshiron të përditësosh fjalëkalimet</string>
+    <string name="my_vehicle">Mjeti im i transportit</string>
+    <string name="ask_vehicle">Me cilin mjet kryen porositë?</string>
+    <string name="bike">Biçikletë 🚲</string>
+    <string name="monopattino">Skuter 🛴</string>
+    <string name="scooter">Motorr 🛵</string>
+    <string name="car">Makinë 🚗</string>
+    <string name="infos">Të dhena shtesë</string>
+    <string name="marca">Marka</string>
+    <string name="modello">Modeli</string>
+    <string name="save">Shpëto</string>
+    <string name="order">Porosia:</string>
+    <string name="client_order">Klienti:</string>
+    <string name="address_order">Adresa e dorëzimit:</string>
+    <string name="preso_in_carico">I marrë përsipër</string>
+    <string name="in_preparazione">Në përgatitje</string>
+    <string name="consegnato_al_rider">Dorëzuar rider-it</string>
+    <string name="qty">Sasia</string>
+    <string name="add_cart">Shto në shportë</string>
+    <string name="buy">Ble</string>
+    <string name="modify_product">Modifiko produktin</string>
+    <string name="delete">Fshi</string>
+    <string name="empty_cache">Boshatis memorien cache</string>
+    <string name="empty_cart">Shporta është boshë</string>
+    <string name="subtotal">Subtotali:</string>
+    <string name="iva_22">IVA (+22%):</string>
+    <string name="total">Totali:</string>
+    <string name="add_order">Kryej porosinë</string>
+    <string name="covid_19">Të kujtojmë që gjat takimit me punonjësit tanë të vendosësh maskën. Në këtë mënyrë evitojmë përhapjen e sëmundjes nga Koronavirus.</string>
+    <string name="your_order">Porosia jote</string>
+    <string name="ask_delete">Je i sigurt që dëshiron të fshish produktin?</string>
+    <string name="yes">Po</string>
+    <string name="no" translatable="false">Jo</string>
+    <string name="added_product">Produkti u shtua</string>
+    <string name="delivered">I dorëzuar</string>
+    <string name="not_delivered">Jo i dorëzuar</string>
+    <string name="indications">Drejtime rrugore</string>
+    <string name="chooseLang">Zgjidh gjuhën</string>
+    <string name="lang_it">Italisht</string>
+    <string name="lang_en">Aglisht</string>
+    <string name="lang_es">Spanjisht</string>
+    <string name="lang_ro">Rumanisht</string>
+    <string name="lang_sq">Shqip</string>
+    <string name="btn_retry">Provo përsëri</string>
+
+    <string name="t1_about">Projekti i zhvilluar tërësisht nga Edoardo Benchea, NUMËR SERIK 20029345</string>
+    <string name="t2_about">Projekt për provimin e Aplikacioneve Mobile, A.A. 2020/2021</string>
+    <string name="t3_about">Falenderohet @WILDWillDesigns për realizimin e logos dhe Franko Bufazi për përkthimin në Shqip</string>
+
+</resources>

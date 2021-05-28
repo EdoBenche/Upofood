@@ -164,4 +164,10 @@
     <string name="lang_en">Engleză</string>
     <string name="lang_es">Spaniolă</string>
     <string name="lang_ro">Română</string>
+    <string name="lang_sq">Albanez</string>
+    <string name="btn_retry">Încearcă din nou</string>
+    <string name="t1_about">Proiect realizat în întregime de Edoardo Benchea, NUMĂRUL DE SERIE 20029345</string>
+    <string name="t2_about">Proiect de examinare a Aplicațiilor Mobile, A.A. 2020/2021</string>
+    <string name="t3_about">Mulțumim @WILDWillDesigns pentru crearea logo-ului și Franko Bufazi pentru traducerea în albaneză</string>
+
 </resources>

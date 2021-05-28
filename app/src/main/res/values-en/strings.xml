@@ -164,4 +164,9 @@
     <string name="lang_es">Spanish</string>
     <string name="lang_ro">Roumanian</string>
     <string name="no">No</string>
+    <string name="btn_retry">Try again</string>
+    <string name="t1_about">Project made entirely by Edoardo Benchea, SERIAL NUMBER 20029345</string>
+    <string name="t2_about">Mobile Application Exam Project, A.A. 2020/2021</string>
+    <string name="t3_about">Thanks to @WILDWillDesigns for the creation of the logo for the translation in Albanian</string>
+    <string name="lang_sq">Albanian</string>
 </resources>
